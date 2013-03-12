@@ -90,49 +90,49 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\ClubcardManager\Behaviours\OnTextPropertyChangedBehaviour.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Behaviours\OnTextPropertyChangedBehaviour.cs">
       <Link>Behaviours\OnTextPropertyChangedBehaviour.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Converters\BarcodeToImageConverter.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Converters\BarcodeToImageConverter.cs">
       <Link>Converters\BarcodeToImageConverter.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Converters\PinToStartConverter.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Converters\PinToStartConverter.cs">
       <Link>Converters\PinToStartConverter.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Model\Card.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\Card.cs">
       <Link>Model\Card.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Model\CardProvider.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\CardProvider.cs">
       <Link>Model\CardProvider.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Model\INavigationService.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Model\NavigationService.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\NavigationService.cs">
       <Link>Model\NavigationService.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\PhotoCameraLuminanceSource.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\PhotoCameraLuminanceSource.cs">
       <Link>PhotoCameraLuminanceSource.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\ViewModel\MainViewModel.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\ViewModel\MainViewModel.cs">
       <Link>ViewModel\MainViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\ViewModel\ViewModelLocator.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
     </Compile>
-    <Compile Include="..\ClubcardManager\Views\BarcodeScanningView.xaml.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\BarcodeScanningView.xaml.cs">
       <Link>Views\BarcodeScanningView.xaml.cs</Link>
       <DependentUpon>BarcodeScanningView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\ClubcardManager\Views\CardDetailsView.xaml.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\CardDetailsView.xaml.cs">
       <Link>Views\CardDetailsView.xaml.cs</Link>
       <DependentUpon>CardDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\ClubcardManager\Views\DisplayBarcodeView.xaml.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\DisplayBarcodeView.xaml.cs">
       <Link>Views\DisplayBarcodeView.xaml.cs</Link>
       <DependentUpon>DisplayBarcodeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\ClubcardManager\Views\MainPage.xaml.cs">
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\MainPage.xaml.cs">
       <Link>Views\MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -154,34 +154,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Content Include="..\ClubcardManager\Images\EveryoneActive.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActive.png">
       <Link>Images\EveryoneActive.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\EveryoneActiveTile.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveTile.png">
       <Link>Images\EveryoneActiveTile.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\NectarCard.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCard.png">
       <Link>Images\NectarCard.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\NectarCardTile.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCardTile.png">
       <Link>Images\NectarCardTile.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\Other.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Other.png">
       <Link>Images\Other.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\OtherTile.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\OtherTile.png">
       <Link>Images\OtherTile.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\PetsAtHome.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHome.png">
       <Link>Images\PetsAtHome.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\PetsAtHomeTile.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeTile.png">
       <Link>Images\PetsAtHomeTile.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\TescoClubcard.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcard.png">
       <Link>Images\TescoClubcard.png</Link>
     </Content>
-    <Content Include="..\ClubcardManager\Images\TescoClubcardTile.png">
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardTile.png">
       <Link>Images\TescoClubcardTile.png</Link>
     </Content>
     <Content Include="Content\About\AboutStyles.xaml">
