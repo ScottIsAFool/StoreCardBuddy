@@ -1,0 +1,89 @@
+﻿<Application x:Class="ClubcardManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ClubcardManager.ViewModel"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
+             xmlns:model="clr-namespace:ClubcardManager.Model"
+             xmlns:converters="clr-namespace:ClubcardManager.Converters"
+             mc:Ignorable="d">
+    <!--Application Resources-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <system:String x:Key="AppName">Store Card Buddy</system:String>
+            <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
+            <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />
+            <scottConverters:InvertedVisibilityConverter x:Key="InvertedVisibilityConverter" />
+            <scottConverters:StringCaseConverter x:Key="StringCaseConverter" />
+            <scottConverters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+            
+            <!--Local converters-->
+            <converters:BarcodeToImageConverter x:Key="BarcodeToImageConverter"/>
+            <vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True" />
+            
+            <model:CardProviders x:Key="CardProviders"
+                                 x:Name="TheCardProviders">
+                <model:CardProvider>
+                    <model:CardProvider.ProviderName>Tesco Clubcard</model:CardProvider.ProviderName>
+                    <model:CardProvider.BarcodeFormat>CODE_39</model:CardProvider.BarcodeFormat>
+                    <model:CardProvider.ImageUrl>/Images/TescoClubcard.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+                <model:CardProvider>
+                    <model:CardProvider.ProviderName>Nectar Card</model:CardProvider.ProviderName>
+                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
+                    <model:CardProvider.ImageUrl>/Images/NectarCard.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+                <model:CardProvider>
+                    <model:CardProvider.ProviderName>Everyone Active</model:CardProvider.ProviderName>
+                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
+                    <model:CardProvider.ImageUrl>/Images/EveryoneActive.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+                <model:CardProvider>
+                    <model:CardProvider.ProviderName>Pets at Home</model:CardProvider.ProviderName>
+                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
+                    <model:CardProvider.ImageUrl>/Images/PetsAtHome.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+                <model:CardProvider>
+                    <model:CardProvider.ProviderName>Other</model:CardProvider.ProviderName>
+                    <model:CardProvider.ImageUrl>/Images/Other.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+            </model:CardProviders>
+
+            <!-- Control Styles -->
+            <Style x:Key="EmptyButtonStyle"
+                   TargetType="ButtonBase">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Border Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService Launching="Application_Launching"
+                                       Closing="Application_Closing"
+                                       Activated="Application_Activated"
+                                       Deactivated="Application_Deactivated" />
+    </Application.ApplicationLifetimeObjects>
+</Application>

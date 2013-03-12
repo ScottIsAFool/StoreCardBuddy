@@ -1,0 +1,121 @@
+﻿<phone:PhoneApplicationPage x:Class="ClubcardManager.Views.BarcodeScanningView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:ignore="http://www.ignore.com"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            mc:Ignorable="d ignore"
+                            d:DesignWidth="480"
+                            d:DesignHeight="768"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn" />
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn" />
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut" />
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut" />
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <Grid x:Name="LayoutRoot"
+          Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel"
+                    Grid.Row="0"
+                    Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle"
+                       Text="{Binding Source={StaticResource AppName}, Converter={StaticResource StringCaseConverter}, ConverterParameter=false}"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
+            <Rectangle x:Name="previewRect"
+                       Margin="0"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
+                <Rectangle.Fill>
+                    <VideoBrush x:Name="previewVideo">
+                        <VideoBrush.RelativeTransform>
+                            <CompositeTransform x:Name="previewTransform"
+                                                CenterX=".5"
+                                                CenterY=".5" />
+                        </VideoBrush.RelativeTransform>
+                    </VideoBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Background="#64000000"
+                        VerticalAlignment="Top">
+                    <TextBlock Text="Please make sure that you hold your phone about 3&quot; (8cm) away from the card's barcode. If the barcode is scratched, please try entering it in manually."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource PhoneTextNormalStyle}"
+                               TextAlignment="Center"
+                               VerticalAlignment="Top"
+                               Foreground="White"
+                               Margin="0" />
+                </Border>
+
+                <Path Fill="Red"
+                      Grid.Row="1"
+                      StrokeThickness="2"
+                      VerticalAlignment="Center"
+                      Height="10"
+                      Stretch="Fill"
+                      UseLayoutRounding="False" />
+
+                <Grid Grid.Row="2"
+                      HorizontalAlignment="Stretch"
+                      Background="#64000000"
+                      VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Button Content="cancel"
+                                VerticalAlignment="Bottom"
+                                x:Name="BtnCancel"
+                                Click="BtnCancel_OnClick" />
+                        <Button Content="enter manually"
+                                VerticalAlignment="Bottom"
+                                Command="{Binding ManualEntryCommand}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>
