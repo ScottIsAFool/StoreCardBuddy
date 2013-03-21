@@ -157,11 +157,17 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActive.png">
       <Link>Images\EveryoneActive.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveSquare.png">
+      <Link>Images\EveryoneActiveSquare.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveTile.png">
       <Link>Images\EveryoneActiveTile.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCard.png">
       <Link>Images\NectarCard.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCardSquare.png">
+      <Link>Images\NectarCardSquare.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCardTile.png">
       <Link>Images\NectarCardTile.png</Link>
@@ -169,11 +175,17 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Other.png">
       <Link>Images\Other.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\OtherSquare.png">
+      <Link>Images\OtherSquare.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\OtherTile.png">
       <Link>Images\OtherTile.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHome.png">
       <Link>Images\PetsAtHome.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeSquare.png">
+      <Link>Images\PetsAtHomeSquare.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeTile.png">
       <Link>Images\PetsAtHomeTile.png</Link>
@@ -181,11 +193,17 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Subway.png">
       <Link>Images\Subway.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\SubwaySquare.png">
+      <Link>Images\SubwaySquare.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\SubwayTile.png">
       <Link>Images\SubwayTile.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcard.png">
       <Link>Images\TescoClubcard.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardSquare.png">
+      <Link>Images\TescoClubcardSquare.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardTile.png">
       <Link>Images\TescoClubcardTile.png</Link>
@@ -253,6 +271,9 @@
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls">
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.2\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="FlurryWP8SDK">
+      <HintPath>..\3plib\Flurry\FlurryWP8SDK.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP8, Version=4.1.27.22645, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

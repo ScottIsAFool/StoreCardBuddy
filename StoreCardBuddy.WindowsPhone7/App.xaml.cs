@@ -75,6 +75,7 @@ namespace ClubcardManager
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession("KP3C6B5C4WM6GPVJW95P");
             LoadCards();
         }
 
@@ -82,6 +83,7 @@ namespace ClubcardManager
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession("KP3C6B5C4WM6GPVJW95P");
             if (!e.IsApplicationInstancePreserved)
             {
                 LoadCards();

@@ -17,6 +17,14 @@ namespace ClubcardManager.Model
                 return tileName;
             }
         }
+        public string SquareUrl
+        {
+            get
+            {
+                var tileName = ImageUrl.Replace(".png", "Square.png");
+                return tileName;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

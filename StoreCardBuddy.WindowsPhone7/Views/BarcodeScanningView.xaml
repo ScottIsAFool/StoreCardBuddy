@@ -109,10 +109,13 @@
                         <Button Content="cancel"
                                 VerticalAlignment="Bottom"
                                 x:Name="BtnCancel"
-                                Click="BtnCancel_OnClick" />
+                                Click="BtnCancel_OnClick"
+                                Style="{StaticResource WhiteButton}" />
                         <Button Content="enter manually"
                                 VerticalAlignment="Bottom"
-                                Command="{Binding ManualEntryCommand}" />
+                                Command="{Binding ManualEntryCommand}"
+                                Click="ButtonBase_OnClick"
+                                Style="{StaticResource WhiteButton}"/>
                     </StackPanel>
                 </Grid>
             </Grid>

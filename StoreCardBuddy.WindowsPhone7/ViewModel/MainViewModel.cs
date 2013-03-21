@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -9,6 +10,14 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Shell;
 using ZXing;
+
+#if WP8
+using Flurry = FlurryWP8SDK;
+using FlurryWP8SDK.Models;
+#else
+using Flurry = FlurryWP7SDK;
+using FlurryWP7SDK.Models;
+#endif
 
 namespace ClubcardManager.ViewModel
 {
@@ -84,6 +93,8 @@ namespace ClubcardManager.ViewModel
                     if (!SupportedFormats.Contains(result.BarcodeFormat))
                     {
                         // Show error message about unsupported barcode
+                        MessageBox.Show("Sorry, this barcode is currently unsupported. If you wish to request this to be looked into, please email from the about page, state what store card it was.", "Unsupported barcode", MessageBoxButton.OK);
+                        navigationService.GoBack();
                         return;
                     }
 
@@ -169,6 +180,7 @@ namespace ClubcardManager.ViewModel
                                                       DetailsPageTitle = "edit card details";
                                                       tempCard = card;
                                                       SelectedCard = card;
+                                                      if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
                                                       SetProviderIndex();
                                                       navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
                                                   });
@@ -194,7 +206,7 @@ namespace ClubcardManager.ViewModel
             {
                 return new RelayCommand(() =>
                                             {
-                                                SelectedCard = new Card();
+                                                SelectedCard = new Card{Id = Guid.NewGuid().ToString()};
                                                 DetailsPageTitle = "add new card";
                                                 navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
                                             });
@@ -222,6 +234,7 @@ namespace ClubcardManager.ViewModel
             {
                 return new RelayCommand<Card>(card =>
                                                   {
+                                                      if (string.IsNullOrEmpty(card.Id)) card.Id = Guid.NewGuid().ToString();
                                                       var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
                                                       if (existingTile != default(ShellTile))
                                                       {
@@ -239,6 +252,7 @@ namespace ClubcardManager.ViewModel
             {
                 return new RelayCommand(() =>
                                             {
+                                                if (string.IsNullOrEmpty(SelectedCard.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
                                                 var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(SelectedCard.Id));
                                                 if (existingTile == default(ShellTile))
                                                 {
@@ -282,6 +296,11 @@ namespace ClubcardManager.ViewModel
                 return new RelayCommand<Card>(card =>
                                                   {
                                                       SelectedCard = card;
+                                                      if (string.IsNullOrEmpty(SelectedCard.Id))
+                                                      {
+                                                          CanPinToStart = true;
+                                                          return;
+                                                      }
                                                       var tile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
                                                       CanPinToStart = tile == default(ShellTile);
                                                   });
@@ -339,7 +358,13 @@ namespace ClubcardManager.ViewModel
                                             {
                                                 CheckBarcode();
                                                 if (DetailsPageTitle != "edit card details")
+                                                {
+                                                    Flurry.Api.LogEvent("CardAdded", new List<Parameter>
+                                                                                         {
+                                                                                             new Parameter("CardProvider", SelectedCard.CardProvider.ProviderName)
+                                                                                         });
                                                     Cards.Add(SelectedCard);
+                                                }
                                                 navigationService.GoBack();
                                             });
             }

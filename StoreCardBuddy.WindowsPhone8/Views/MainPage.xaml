@@ -124,7 +124,7 @@
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <StackPanel Orientation="Horizontal">
                                     <Border Background="#64BEBEBE">
-                                        <Image Source="{Binding CardProvider.TileUrl}"
+                                        <Image Source="{Binding CardProvider.SquareUrl}"
                                                MaxHeight="99"
                                                Width="99"
                                                VerticalAlignment="Top" />

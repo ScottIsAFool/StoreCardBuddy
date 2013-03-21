@@ -184,5 +184,10 @@ namespace ClubcardManager.Views
             if (NavigationService.CanGoBack && e.NavigationMode == NavigationMode.New)
                 NavigationService.RemoveBackEntry();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            _timer.Stop();
+        }
     }
 }

@@ -54,6 +54,9 @@
     <Reference Include="Coding4Fun.Toolkit.Controls">
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.2\lib\wp71\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="FlurryWP7SDK">
+      <HintPath>..\3plib\Flurry\FlurryWP7SDK.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WP71, Version=4.1.27.22669, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
@@ -180,16 +183,22 @@
     <Content Include="Icons\appbar.pin.remove.png" />
     <Content Include="Icons\appbar.save.rest.png" />
     <Content Include="Images\EveryoneActive.png" />
+    <Content Include="Images\EveryoneActiveSquare.png" />
     <Content Include="Images\EveryoneActiveTile.png" />
     <Content Include="Images\NectarCard.png" />
+    <Content Include="Images\NectarCardSquare.png" />
     <Content Include="Images\NectarCardTile.png" />
     <Content Include="Images\Other.png" />
+    <Content Include="Images\OtherSquare.png" />
     <Content Include="Images\OtherTile.png" />
     <Content Include="Images\PetsAtHome.png" />
+    <Content Include="Images\PetsAtHomeSquare.png" />
     <Content Include="Images\PetsAtHomeTile.png" />
     <Content Include="Images\Subway.png" />
+    <Content Include="Images\SubwaySquare.png" />
     <Content Include="Images\SubwayTile.png" />
     <Content Include="Images\TescoClubcard.png" />
+    <Content Include="Images\TescoClubcardSquare.png" />
     <Content Include="Images\TescoClubcardTile.png" />
     <Content Include="MVVMLight.Nuget.Readme.txt" />
     <Content Include="README_FIRST.txt" />
