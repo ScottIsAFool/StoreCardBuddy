@@ -178,6 +178,12 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeTile.png">
       <Link>Images\PetsAtHomeTile.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Subway.png">
+      <Link>Images\Subway.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\SubwayTile.png">
+      <Link>Images\SubwayTile.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcard.png">
       <Link>Images\TescoClubcard.png</Link>
     </Content>
@@ -254,6 +260,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
+    <Reference Include="MessagingToolkit.Barcode">
+      <HintPath>..\Other-Packages\barcode-toolkit-8.0\MessagingToolkit.Barcode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -278,7 +287,6 @@
       <HintPath>..\packages\ZXing.Net.0.10.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\BarcodeScanningView.xaml">
       <Generator>MSBuild:Compile</Generator>

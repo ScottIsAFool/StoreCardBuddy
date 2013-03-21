@@ -28,7 +28,15 @@ namespace ClubcardManager.ViewModel
     {
         private readonly INavigationService navigationService;
 
+        private static BarcodeFormat[] SupportedFormats = new[]
+                                                              {
+                                                                  BarcodeFormat.CODE_128, BarcodeFormat.CODE_39, BarcodeFormat.UPC_A, BarcodeFormat.EAN_8, BarcodeFormat.EAN_13, BarcodeFormat.ITF, BarcodeFormat.CODABAR, BarcodeFormat.QR_CODE,
+                                                                  BarcodeFormat.PDF_417,
+                                                              };
+
         private Result currentCard;
+        private Card tempCard;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -55,6 +63,7 @@ namespace ClubcardManager.ViewModel
             else
             {
                 WireMessages();
+                SelectedCardIndex = -1;
             }
         }
 
@@ -65,6 +74,12 @@ namespace ClubcardManager.ViewModel
                 if (m.Notification.Equals("ResultFoundMsg"))
                 {
                     var result = (Result)m.Sender;
+                    if (!SupportedFormats.Contains(result.BarcodeFormat))
+                    {
+                        // Show error message about unsupported barcode
+                        return;
+                    }
+
                     SelectedCard = new Card
                                        {
                                            Id = Guid.NewGuid().ToString(),
@@ -144,6 +159,7 @@ namespace ClubcardManager.ViewModel
                 return new RelayCommand<Card>(card =>
                                                   {
                                                       DetailsPageTitle = "edit card details";
+                                                      tempCard = card;
                                                       SelectedCard = card;
                                                       SetProviderIndex();
                                                       navigationService.NavigateToPage("/Views/CardDetailsView.xaml");

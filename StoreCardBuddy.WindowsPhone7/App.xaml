@@ -48,6 +48,11 @@
                     <model:CardProvider.ImageUrl>/Images/PetsAtHome.png</model:CardProvider.ImageUrl>
                 </model:CardProvider>
                 <model:CardProvider>
+                    <model:CardProvider.ProviderName>Subway</model:CardProvider.ProviderName>
+                    <model:CardProvider.BarcodeFormat>DATA_MATRIX</model:CardProvider.BarcodeFormat>
+                    <model:CardProvider.ImageUrl>/Images/Subway.png</model:CardProvider.ImageUrl>
+                </model:CardProvider>
+                <model:CardProvider>
                     <model:CardProvider.ProviderName>Other</model:CardProvider.ProviderName>
                     <model:CardProvider.ImageUrl>/Images/Other.png</model:CardProvider.ImageUrl>
                 </model:CardProvider>

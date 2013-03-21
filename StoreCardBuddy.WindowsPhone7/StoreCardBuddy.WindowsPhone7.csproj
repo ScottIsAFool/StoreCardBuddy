@@ -62,6 +62,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
+    <Reference Include="MessagingToolkit.Barcode">
+      <HintPath>..\Other-Packages\barcode-toolkit-7.1\MessagingToolkit.Barcode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -184,6 +187,8 @@
     <Content Include="Images\OtherTile.png" />
     <Content Include="Images\PetsAtHome.png" />
     <Content Include="Images\PetsAtHomeTile.png" />
+    <Content Include="Images\Subway.png" />
+    <Content Include="Images\SubwayTile.png" />
     <Content Include="Images\TescoClubcard.png" />
     <Content Include="Images\TescoClubcardTile.png" />
     <Content Include="MVVMLight.Nuget.Readme.txt" />
