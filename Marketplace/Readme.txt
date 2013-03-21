@@ -1,7 +1,7 @@
 Store Card Buddy - v1.0
 
 WHAT IS IT?
-An app that lets you remember your store cards on your phone so you don't have to carry them round with you.
+An app that lets you remember your store cards on your phone so you don't have to carry them round with you. Mileage may vary depending on the store's scanners.
 
 FEEDBACK
 IF you have any feedback, do please get in touch on twitter (Hi, I'm @scottisafool) or email me at scottisafool@live.co.uk
