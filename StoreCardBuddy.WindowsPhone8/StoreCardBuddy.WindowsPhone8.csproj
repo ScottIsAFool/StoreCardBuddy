@@ -196,7 +196,9 @@
     </Content>
     <Content Include="Icons\appbar.save.rest.png" />
     <Content Include="README_FIRST.txt" />
+    <Content Include="SplashScreenImage.Screen-720p.jpg" />
     <Content Include="SplashScreenImage.Screen-WVGA.jpg" />
+    <Content Include="SplashScreenImage.Screen-WXGA.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
