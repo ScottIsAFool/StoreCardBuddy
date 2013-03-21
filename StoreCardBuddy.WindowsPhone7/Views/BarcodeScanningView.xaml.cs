@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Threading;
@@ -17,16 +16,16 @@ namespace ClubcardManager.Views
     /// </summary>
     public partial class BarcodeScanningView : PhoneApplicationPage
     {
-        private readonly BackgroundWorker scannerWorker;
+        private readonly BackgroundWorker _scannerWorker;
 
-        private DispatcherTimer timer;
-        private DispatcherTimer focusTimer;
-        private PhotoCameraLuminanceSource luminance;
-        private IBarcodeReader reader;
-        private PhotoCamera photoCamera;
-        private readonly WriteableBitmap dummyBitmap = new WriteableBitmap(1, 1);
+        private DispatcherTimer _timer;
+        private DispatcherTimer _focusTimer;
+        private PhotoCameraLuminanceSource _luminance;
+        private IBarcodeReader _reader;
+        private PhotoCamera _photoCamera;
+        private readonly WriteableBitmap _dummyBitmap = new WriteableBitmap(1, 1);
 
-        private bool barcodeFound;
+        private bool _barcodeFound;
         /// <summary>
         /// Initializes a new instance of the BarcodeScanningView class.
         /// </summary>
@@ -34,44 +33,49 @@ namespace ClubcardManager.Views
         {
             InitializeComponent();
 
-            scannerWorker = new BackgroundWorker();
-            scannerWorker.DoWork += scannerWorker_DoWork;
-            scannerWorker.RunWorkerCompleted += scannerWorker_RunWorkerCompleted;
+            _scannerWorker = new BackgroundWorker();
+            _scannerWorker.DoWork += scannerWorker_DoWork;
+            _scannerWorker.RunWorkerCompleted += scannerWorker_RunWorkerCompleted;
 
             Loaded += (sender, args) =>
                           {
-                              if (photoCamera == null)
+                              if (_photoCamera == null)
                               {
-                                  photoCamera = new PhotoCamera();
-                                  photoCamera.Initialized += OnPhotoCameraInitialized;
-                                  previewVideo.SetSource(photoCamera);
+                                  _photoCamera = new PhotoCamera();
+                                  _photoCamera.Initialized += OnPhotoCameraInitialized;
+                                  previewVideo.SetSource(_photoCamera);
 
                                   CameraButtons.ShutterKeyHalfPressed += (o, arg) => FocusTheCamera();
                               }
 
-                              if (timer == null)
+                              if (_timer == null)
                               {
-                                  timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
-                                  timer.Tick += (o, arg) => ScanPreviewBuffer();
+                                  _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
+                                  _timer.Tick +=TimerOnTick;
                               }
 
-                              if (focusTimer == null)
+                              if (_focusTimer == null)
                               {
-                                  focusTimer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(4500)};
-                                  focusTimer.Tick += (o, eventArgs) => FocusTheCamera();
+                                  _focusTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(4500) };
+                                  _focusTimer.Tick += (o, eventArgs) => FocusTheCamera();
                               }
 
-                              timer.Start();
+                              _timer.Start();
                           };
+        }
+
+        private void TimerOnTick(object sender, EventArgs eventArgs)
+        {
+            ScanPreviewBuffer();
         }
 
         private void FocusTheCamera()
         {
-            if (photoCamera.IsFocusAtPointSupported)
+            if (_photoCamera.IsFocusAtPointSupported)
             {
                 try
                 {
-                    photoCamera.FocusAtPoint(0.5, 0.5);
+                    _photoCamera.FocusAtPoint(0.5, 0.5);
                 }
                 catch
                 {
@@ -79,11 +83,11 @@ namespace ClubcardManager.Views
             }
             else
             {
-                if (photoCamera.IsFocusSupported)
+                if (_photoCamera.IsFocusSupported)
                 {
                     try
                     {
-                        photoCamera.Focus();
+                        _photoCamera.Focus();
                     }
                     catch
                     {
@@ -94,47 +98,54 @@ namespace ClubcardManager.Views
 
         private void ScanPreviewBuffer()
         {
-            if (luminance == null)
+            if (_luminance == null)
                 return;
 
-            photoCamera.GetPreviewBufferY(luminance.PreviewBufferY);
+            try
+            {
+                // Because of the timer not being stopped in time, put an empty try/catch
+                // to prevent an ObjectDisposedException to occur because the camera is done.
+                _photoCamera.GetPreviewBufferY(_luminance.PreviewBufferY);
+            }
+            catch { }
             // use a dummy writeable bitmap because the luminance values are written directly to the luminance buffer
-            var result = reader.Decode(dummyBitmap);
+            var result = _reader.Decode(_dummyBitmap);
             if (result == null) return; // if no barcode is found, don't do anything
             Dispatcher.BeginInvoke(() =>
                                        {
                                            // if a barcode has already been found, we don't want any more going through this time
-                                           if (!barcodeFound) 
+                                           if (!_barcodeFound)
                                            {
+                                               _timer.Stop();
                                                DisplayResult(result);
-                                               barcodeFound = true;
+                                               _barcodeFound = true;
                                            }
                                        });
+
         }
 
         private void DisplayResult(Result result)
         {
             if (result != null)
             {
-                //previewVideo.SetSource(new MediaElement());
                 Messenger.Default.Send(new NotificationMessage(result, "ResultFoundMsg"));
             }
         }
 
         private void OnPhotoCameraInitialized(object sender, CameraOperationCompletedEventArgs e)
         {
-            var width = Convert.ToInt32(photoCamera.PreviewResolution.Width);
-            var height = Convert.ToInt32(photoCamera.PreviewResolution.Height);
+            var width = Convert.ToInt32(_photoCamera.PreviewResolution.Width);
+            var height = Convert.ToInt32(_photoCamera.PreviewResolution.Height);
 
-            photoCamera.FlashMode = FlashMode.Off;
+            _photoCamera.FlashMode = FlashMode.Off;
 
             Dispatcher.BeginInvoke(() =>
             {
-                previewTransform.Rotation = photoCamera.Orientation;
+                previewTransform.Rotation = _photoCamera.Orientation;
                 // create a luminance source which gets its values directly from the camera
                 // the instance is returned directly to the reader
-                luminance = new PhotoCameraLuminanceSource(width, height);
-                reader = new BarcodeReader(null, bmp => luminance, null);
+                _luminance = new PhotoCameraLuminanceSource(width, height);
+                _reader = new BarcodeReader(null, bmp => _luminance, null);
 
                 //if(focusTimer!= null) focusTimer.Start();
             });

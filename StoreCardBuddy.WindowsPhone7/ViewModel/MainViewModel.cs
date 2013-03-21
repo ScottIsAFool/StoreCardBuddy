@@ -28,11 +28,19 @@ namespace ClubcardManager.ViewModel
     {
         private readonly INavigationService navigationService;
 
-        private static BarcodeFormat[] SupportedFormats = new[]
-                                                              {
-                                                                  BarcodeFormat.CODE_128, BarcodeFormat.CODE_39, BarcodeFormat.UPC_A, BarcodeFormat.EAN_8, BarcodeFormat.EAN_13, BarcodeFormat.ITF, BarcodeFormat.CODABAR, BarcodeFormat.QR_CODE,
-                                                                  BarcodeFormat.PDF_417,
-                                                              };
+        private static readonly BarcodeFormat[] SupportedFormats = new[]
+                                                                       {
+                                                                           BarcodeFormat.CODE_128,
+                                                                           BarcodeFormat.CODE_39,
+                                                                           BarcodeFormat.UPC_A,
+                                                                           BarcodeFormat.EAN_8, 
+                                                                           BarcodeFormat.EAN_13, 
+                                                                           BarcodeFormat.ITF,
+                                                                           BarcodeFormat.CODABAR,
+                                                                           BarcodeFormat.QR_CODE,
+                                                                           BarcodeFormat.PDF_417, 
+                                                                           BarcodeFormat.DATA_MATRIX,
+                                                                       };
 
         private Result currentCard;
         private Card tempCard;
@@ -63,7 +71,6 @@ namespace ClubcardManager.ViewModel
             else
             {
                 WireMessages();
-                SelectedCardIndex = -1;
             }
         }
 
@@ -96,13 +103,14 @@ namespace ClubcardManager.ViewModel
                         SelectedCard.OriginalBarcode = result.Text;
                         SelectedCard.DisplayBarcode = result.Text.Replace("9794", "634004");
                         SelectedCardIndex = 0;
+                        OnSelectedCardIndexChanged();
                     }
                     else
                     {
                         SelectedCard.OriginalBarcode = SelectedCard.DisplayBarcode = result.Text;
                         SelectedCardIndex = 1;
                     }
-                    
+
                     // Navigate to the card editing page
                     DetailsPageTitle = "add new card";
                     navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
@@ -169,7 +177,7 @@ namespace ClubcardManager.ViewModel
 
         private void SetProviderIndex()
         {
-            var providers = ((CardProviders) Application.Current.Resources["CardProviders"]);
+            var providers = ((CardProviders)Application.Current.Resources["CardProviders"]);
             for (var i = 0; i < providers.Count; i++)
             {
                 if (SelectedCard.CardProvider.ProviderName == providers[i].ProviderName)

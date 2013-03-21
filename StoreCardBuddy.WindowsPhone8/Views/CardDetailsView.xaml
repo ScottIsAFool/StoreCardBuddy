@@ -20,6 +20,33 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
                             DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="ListPickerItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ImageUrl}"
+                       MaxHeight="40"
+                       Width="100"
+                       HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding ProviderName}"
+                           Margin="6,0,0,0" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FullModeItemTemplate">
+            <StackPanel Orientation="Horizontal"
+                        Height="60"
+                        Margin="0,0,0,12">
+                <Image Source="{Binding TileUrl}"
+                       MaxHeight="60"
+                       Width="100"
+                       HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding ProviderName}"
+                           Style="{StaticResource PhoneTextLargeStyle}"
+                           Margin="6,0,0,0"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -80,11 +107,15 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Orientation="Vertical">
-                    <Border Background="White">
+                    <Border Background="White"
+                            Margin="0,-350,0,0">
+                        <Border.Clip>
+                            <RectangleGeometry Rect="0 350 460 100" />
+                        </Border.Clip>
                         <Image Source="{Binding Main.SelectedCard, Source={StaticResource Locator}, Converter={StaticResource BarcodeToImageConverter}}"
                                MaxWidth="450"
-                               MaxHeight="100"
-                               Height="100" />
+                               Height="450"
+                               VerticalAlignment="Bottom" />
                     </Border>
                     <TextBlock Text="Card name:"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
@@ -96,20 +127,9 @@
                     </toolkit:PhoneTextBox>
                     <toolkit:ListPicker ItemsSource="{Binding Source={StaticResource CardProviders}}"
                                         SelectedIndex="{Binding Main.SelectedCardIndex, Source={StaticResource Locator}, Mode=TwoWay}"
-                                        Header="Card provider:">
-                        <toolkit:ListPicker.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageUrl}"
-                                           MaxHeight="40"
-                                           Width="100"
-                                           HorizontalAlignment="Left" />
-                                    <TextBlock Text="{Binding ProviderName}"
-                                               Margin="6,0,0,0" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:ListPicker.ItemTemplate>
-                    </toolkit:ListPicker>
+                                        Header="Card provider:"
+                                        FullModeItemTemplate="{StaticResource FullModeItemTemplate}"
+                                        ItemTemplate="{StaticResource ListPickerItemTemplate}"/>
                     <TextBlock Text="Barcode:"
                                Style="{StaticResource PhoneTextSubtleStyle}" />
                     <toolkit:PhoneTextBox Text="{Binding DisplayBarcode, Mode=TwoWay}"

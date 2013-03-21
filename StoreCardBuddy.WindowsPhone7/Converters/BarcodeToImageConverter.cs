@@ -42,7 +42,7 @@ namespace ClubcardManager.Converters
             return null;
         }
 
-        private object DataMatrixImage(Card barcode)
+        private static object DataMatrixImage(Card barcode)
         {
             var encoder = new BarcodeEncoder();
 
