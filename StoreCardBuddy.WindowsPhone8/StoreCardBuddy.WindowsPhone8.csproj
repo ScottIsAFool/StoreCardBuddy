@@ -139,6 +139,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AddToWalletConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
@@ -213,6 +214,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Icons\appbar.save.rest.png" />
+    <Content Include="Icons\appbar.wallet.remove.rest.png" />
     <Content Include="Icons\appbar.wallet.rest.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.Screen-720p.jpg" />

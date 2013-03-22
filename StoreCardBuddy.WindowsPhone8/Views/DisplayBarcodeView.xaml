@@ -24,6 +24,7 @@
                             DataContext="{Binding Main, Source={StaticResource Locator}}">
     <phone:PhoneApplicationPage.Resources>
         <converters:PinToStartConverter x:Key="PinToStartConverter"/>
+        <converters:AddToWalletConverter x:Key="AddToWalletConverter"/>
     </phone:PhoneApplicationPage.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -63,10 +64,9 @@
                 <cimbalino:ApplicationBarIconButton Text="{Binding CanPinToStart, Converter={StaticResource PinToStartConverter}, ConverterParameter=Text}"
                                                     IconUri="{Binding CanPinToStart, Converter={StaticResource PinToStartConverter}, ConverterParameter=icon}"
                                                     Command="{Binding PinToStartCommand}"/>
-                <cimbalino:ApplicationBarIconButton Text="add to wallet"
-                                                    IconUri="/Icons/appbar.wallet.rest.png"
-                                                    Command="{Binding AddToWalletCommand}"
-                                                    IsEnabled="{Binding CanAddToWallet}"/>
+                <cimbalino:ApplicationBarIconButton Text="{Binding CanAddToWallet, Converter={StaticResource AddToWalletConverter}, ConverterParameter=Text}"
+                                                    IconUri="{Binding CanAddToWallet, Converter={StaticResource AddToWalletConverter}, ConverterParameter=Icon}"
+                                                    Command="{Binding AddToWalletCommand}"/>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>

@@ -413,7 +413,20 @@ namespace ClubcardManager.ViewModel
         {
             get
             {
-                return new RelayCommand(() => AddToWallet(SelectedCard));
+                return new RelayCommand(() =>
+                                            {
+                                                if (CheckWalletForCard(SelectedCard.Id))
+                                                {
+                                                    AddToWallet(SelectedCard);
+                                                    CheckWalletForCard(SelectedCard.Id);
+                                                }
+                                                else
+                                                {
+                                                    var result = MessageBox.Show("Are you sure you want to remove this card from the wallet?", "Are you sure?", MessageBoxButton.OKCancel);
+                                                    if (result == MessageBoxResult.OK)
+                                                        Wallet.Remove(SelectedCard.Id);
+                                                }
+                                            });
             }
         }
 
