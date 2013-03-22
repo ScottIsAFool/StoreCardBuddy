@@ -66,7 +66,7 @@
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
     <Reference Include="MessagingToolkit.Barcode">
-      <HintPath>..\Other-Packages\barcode-toolkit-7.1\MessagingToolkit.Barcode.dll</HintPath>
+      <HintPath>..\3plib\barcode-toolkit-7.1\MessagingToolkit.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">

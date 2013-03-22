@@ -284,7 +284,7 @@
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
     <Reference Include="MessagingToolkit.Barcode">
-      <HintPath>..\Other-Packages\barcode-toolkit-8.0\MessagingToolkit.Barcode.dll</HintPath>
+      <HintPath>..\3plib\barcode-toolkit-8.0\MessagingToolkit.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
