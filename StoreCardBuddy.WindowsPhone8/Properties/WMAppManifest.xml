@@ -11,6 +11,8 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_ISV_CAMERA" />
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_WALLET" />
+      <Capability Name="ID_CAP_WALLET_PAYMENTINSTRUMENTS" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views\MainPage.xaml" />
@@ -36,6 +38,9 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Extension ExtensionName="Wallet_app_membership" ConsumerID="{5B04B775-356B-4AA0-AAF8-6491FFEA5683}" TaskID="_default"/>
+    </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />

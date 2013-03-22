@@ -114,6 +114,9 @@
                                         <toolkit:MenuItem Header="pin to start"
                                                           Command="{Binding Main.PinToStartContextCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />
+                                        <toolkit:MenuItem Header="add to wallet"
+                                                          Command="{Binding Main.AddToWalletContextCommand, Source={StaticResource Locator}}"
+                                                          CommandParameter="{Binding}"/>
                                         <toolkit:MenuItem Header="edit"
                                                           Command="{Binding Main.EditCardCommand, Source={StaticResource Locator}}"
                                                           CommandParameter="{Binding}" />

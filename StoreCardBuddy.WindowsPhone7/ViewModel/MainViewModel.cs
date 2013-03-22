@@ -4,16 +4,20 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using ClubcardManager.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using ZXing;
 
 #if WP8
 using Flurry = FlurryWP8SDK;
 using FlurryWP8SDK.Models;
+using Microsoft.Phone.Wallet;
+using System.Threading.Tasks;
 #else
 using Flurry = FlurryWP7SDK;
 using FlurryWP7SDK.Models;
@@ -160,7 +164,7 @@ namespace ClubcardManager.ViewModel
                 SelectedCard.CardProvider.BarcodeFormat = SelectedCard.OriginalBarcodeFormat;
             }
         }
-
+        
         public string DetailsPageTitle { get; set; }
 
         public RelayCommand<string> NavigateToPageCommand
@@ -381,5 +385,91 @@ namespace ClubcardManager.ViewModel
                                             });
             }
         }
+
+
+#if WP8
+        public bool CanAddToWallet { get; set; }
+
+        private  bool CheckWalletForCard(string id)
+        {
+            var walletItem = Wallet.FindItem(id);
+            CanAddToWallet = walletItem == default(WalletItem);
+            return CanAddToWallet;
+        }
+
+        public RelayCommand DisplayBarcodeViewLoaded
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                                            {
+                                                CheckWalletForCard(SelectedCard.Id);
+                                                ItemTappedCommand.Execute(SelectedCard);
+                                            });
+            }
+        }
+
+        public RelayCommand AddToWalletCommand
+        {
+            get
+            {
+                return new RelayCommand(() => AddToWallet(SelectedCard));
+            }
+        }
+
+        public RelayCommand<Card> AddToWalletContextCommand
+        {
+            get
+            {
+                return new RelayCommand<Card>(card =>
+                                                  {
+                                                      if (!CheckWalletForCard(card.Id)) return;
+                                                      AddToWallet(card);
+                                                  });
+            }
+        } 
+
+        private void AddToWallet(Card card, bool showSuccessMessage = false)
+        {
+            if (card == null) return;
+            
+            var walletCard = new WalletTransactionItem(card.Id)
+                                 {
+                                     DisplayName = card.Name,
+                                     IssuerName = card.CardProvider.ProviderName,
+                                     Logo99x99 = GetTileFromProvider(card.CardProvider, 99),
+                                     Logo159x159 = GetTileFromProvider(card.CardProvider, 159),
+                                     Logo336x336 = GetTileFromProvider(card.CardProvider, 336),
+                                     BarcodeImage = (BitmapSource)new Converters.BarcodeToImageConverter().Convert(card, typeof(BitmapSource), "false", null),
+                                     NavigationUri = new Uri(string.Format("/Views/DisplayBarcodeView.xaml?id={0}", card.Id), UriKind.Relative),
+                                     CustomerName = card.DisplayBarcode
+                                 };
+
+            var walletTask = new AddWalletItemTask
+                                 {
+                                     Item = walletCard
+                                 };
+            walletTask.Completed += (sender, result) =>
+                                        {
+                                            if (result.Error != null)
+                                            {
+                                                App.ShowMessage("There was an error adding your card");
+                                                return;
+                                            }
+
+                                            CheckWalletForCard(card.Id);
+                                            if(showSuccessMessage)
+                                                App.ShowMessage("Card was added to the wallet");
+                                        };
+            walletTask.Show();
+        }
+
+        private static BitmapSource GetTileFromProvider(CardProvider cardProvider, int imageSize)
+        {
+            var bmp = new BitmapImage(new Uri(cardProvider.TileUrl, UriKind.Relative)){ CreateOptions = BitmapCreateOptions.None};
+            var resize = new WriteableBitmap(bmp).Resize(imageSize, imageSize, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
+            return resize;
+        }
+#endif
     }
 }

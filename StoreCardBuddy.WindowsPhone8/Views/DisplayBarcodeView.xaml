@@ -11,6 +11,7 @@
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=Microsoft.Phone"
                             xmlns:converters="clr-namespace:ClubcardManager.Converters"
+                            xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -24,6 +25,11 @@
     <phone:PhoneApplicationPage.Resources>
         <converters:PinToStartConverter x:Key="PinToStartConverter"/>
     </phone:PhoneApplicationPage.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding DisplayBarcodeViewLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -57,6 +63,10 @@
                 <cimbalino:ApplicationBarIconButton Text="{Binding CanPinToStart, Converter={StaticResource PinToStartConverter}, ConverterParameter=Text}"
                                                     IconUri="{Binding CanPinToStart, Converter={StaticResource PinToStartConverter}, ConverterParameter=icon}"
                                                     Command="{Binding PinToStartCommand}"/>
+                <cimbalino:ApplicationBarIconButton Text="add to wallet"
+                                                    IconUri="/Icons/appbar.wallet.rest.png"
+                                                    Command="{Binding AddToWalletCommand}"
+                                                    IsEnabled="{Binding CanAddToWallet}"/>
             </cimbalino:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
         <Grid.RowDefinitions>
