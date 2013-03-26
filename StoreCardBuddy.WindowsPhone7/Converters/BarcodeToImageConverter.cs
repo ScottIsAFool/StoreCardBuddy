@@ -14,30 +14,37 @@ namespace ClubcardManager.Converters
         {
             if (value != null)
             {
-                var isPreview = true;
-                if (parameter != null) isPreview = bool.Parse(parameter.ToString());
-                var barcode = (Card) value;
-                if (string.IsNullOrEmpty(barcode.OriginalBarcode)) return null;
+                try
+                {
+                    var isPreview = true;
+                    if (parameter != null) isPreview = bool.Parse(parameter.ToString());
+                    var barcode = (Card) value;
+                    if (string.IsNullOrEmpty(barcode.OriginalBarcode)) return null;
 
-                if (barcode.CardProvider.BarcodeFormat == BarcodeFormat.DATA_MATRIX) return DataMatrixImage(barcode);
+                    if (barcode.CardProvider.BarcodeFormat == BarcodeFormat.DATA_MATRIX) return DataMatrixImage(barcode);
 
-                var writer = new BarcodeWriter
-                                 {
-                                     Format = barcode.CardProvider.BarcodeFormat,
-                                     Options = isPreview
-                                                   ? new EncodingOptions
-                                                         {
-                                                             Height = 100,
-                                                             Width = 450
-                                                         }
-                                                   : new EncodingOptions
-                                                         {
-                                                             Height = 480,
-                                                             Width = 480
-                                                         }
-                                 };
-                var bmp = writer.Write(barcode.OriginalBarcode);
-                return bmp;
+                    var writer = new BarcodeWriter
+                                     {
+                                         Format = barcode.CardProvider.BarcodeFormat,
+                                         Options = isPreview
+                                                       ? new EncodingOptions
+                                                             {
+                                                                 Height = 100,
+                                                                 Width = 450
+                                                             }
+                                                       : new EncodingOptions
+                                                             {
+                                                                 Height = 480,
+                                                                 Width = 480
+                                                             }
+                                     };
+                    var bmp = writer.Write(barcode.OriginalBarcode);
+                    return bmp;
+                }
+                catch
+                {
+                    return new Uri("/Images/InvalidData.png", UriKind.Relative);
+                }
             }
             return null;
         }

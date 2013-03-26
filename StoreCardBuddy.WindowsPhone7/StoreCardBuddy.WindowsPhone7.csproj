@@ -185,6 +185,7 @@
     <Content Include="Images\EveryoneActive.png" />
     <Content Include="Images\EveryoneActiveSquare.png" />
     <Content Include="Images\EveryoneActiveTile.png" />
+    <Content Include="Images\InvalidData.png" />
     <Content Include="Images\NectarCard.png" />
     <Content Include="Images\NectarCardSquare.png" />
     <Content Include="Images\NectarCardTile.png" />

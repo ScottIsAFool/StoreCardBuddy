@@ -164,6 +164,9 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveTile.png">
       <Link>Images\EveryoneActiveTile.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\InvalidData.png">
+      <Link>Images\InvalidData.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCard.png">
       <Link>Images\NectarCard.png</Link>
     </Content>

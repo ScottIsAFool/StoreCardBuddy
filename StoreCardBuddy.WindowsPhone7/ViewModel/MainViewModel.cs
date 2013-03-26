@@ -345,10 +345,9 @@ namespace ClubcardManager.ViewModel
                                                 var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
                                                 if (result == MessageBoxResult.OK)
                                                 {
-                                                    foreach (var card in SelectedCards)
-                                                    {
-                                                        Cards.Remove(card);
-                                                    }
+                                                    var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
+                                                    
+                                                    Cards = new ObservableCollection<Card>(temp);
                                                 }
                                             });
             }
