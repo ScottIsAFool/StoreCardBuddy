@@ -291,8 +291,9 @@
     <Reference Include="Cimbalino.Phone.Toolkit">
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls">
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.2\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.5\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="FlurryWP8SDK">
       <HintPath>..\3plib\Flurry\FlurryWP8SDK.dll</HintPath>
@@ -323,6 +324,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone">
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.13.0\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
