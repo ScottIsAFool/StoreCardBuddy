@@ -45,6 +45,7 @@ namespace ClubcardManager.ViewModel
             if (!SimpleIoc.Default.IsRegistered<INavigationService>())
                 SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<BackupRestoreViewModel>(true);
         }
 
         public MainViewModel Main
@@ -53,6 +54,11 @@ namespace ClubcardManager.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
+        }
+
+        public BackupRestoreViewModel BackupRestore
+        {
+            get { return ServiceLocator.Current.GetInstance<BackupRestoreViewModel>(); }
         }
         
         public static void Cleanup()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
@@ -11,6 +12,7 @@ using ClubcardManager.Resources;
 using ClubcardManager.ViewModel;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
@@ -103,6 +105,22 @@ namespace ClubcardManager
             {
                 var cards = ISettings.GetKeyValue<ObservableCollection<Card>>("TheCards");
                 SimpleIoc.Default.GetInstance<MainViewModel>().Cards = cards;
+            }
+
+            LoadSkyDriveSettings();
+        }
+
+        private static void LoadSkyDriveSettings()
+        {
+            var sri = GetResourceStream(new Uri("SkyDriveAccess.txt", UriKind.Relative));
+            if (sri != null)
+            {
+                using (var reader = new StreamReader(sri.Stream))
+                {
+                    var clientId = reader.ReadToEnd();
+
+                    Messenger.Default.Send(new NotificationMessage(clientId, "SkydriveDetails"));
+                }
             }
         }
 

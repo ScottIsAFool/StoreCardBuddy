@@ -57,6 +57,9 @@
                                                         IconUri="/Icons/appbar.list.check.png"
                                                         Click="ApplicationBarIconButton_OnClick" />
                     <cimbalino:ApplicationBar.MenuItems>
+                        <cimbalino:ApplicationBarMenuItem Command="{Binding NavigateToPageCommand}"
+                                                          CommandParameter="/Views/BackupRestoreView.xaml"
+                                                          Text="backup/restore"/>
                         <cimbalino:ApplicationBarMenuItem Command="{Binding NavigateToPageCommand, Mode=OneTime}"
                                                           CommandParameter="/YourLastAboutDialog;component/AboutPage.xaml"
                                                           Text="about" />

@@ -25,6 +25,7 @@
     <SilverlightAppEntry>ClubcardManager.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <FodyPath>..\packages\Fody.1.13.6.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="SkyDriveAccess.txt" />
     <Reference Include="Cimbalino.Phone.Toolkit">
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
@@ -68,6 +70,12 @@
     <Reference Include="MessagingToolkit.Barcode">
       <HintPath>..\3plib\barcode-toolkit-7.1\MessagingToolkit.Barcode.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Live">
+      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone71\Microsoft.Live.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Live.Controls">
+      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone71\Microsoft.Live.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -76,16 +84,30 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.14-rc\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.14-rc\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.14-rc\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework.GamerServices" />
-    <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\SL40-WP71\PropertyChanged.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.13.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.13.0\lib\wp71\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.16-rc\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.16-rc\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -99,6 +121,7 @@
       <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
     </Reference>
     <None Include="app.config" />
+    <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
     <Reference Include="zxing.wp7.1">
       <HintPath>..\packages\ZXing.Net.0.10.0.0\lib\sl4-wp71\zxing.wp7.1.dll</HintPath>
@@ -111,11 +134,16 @@
     <Compile Include="Behaviours\OnTextPropertyChangedBehaviour.cs" />
     <Compile Include="Converters\BarcodeToImageConverter.cs" />
     <Compile Include="Converters\PinToStartConverter.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\CardProvider.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="PhotoCameraLuminanceSource.cs" />
+    <Compile Include="ViewModel\BackupRestoreViewModel.cs" />
+    <Compile Include="Views\BackupRestoreView.xaml.cs">
+      <DependentUpon>BackupRestoreView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BarcodeScanningView.xaml.cs">
       <DependentUpon>BarcodeScanningView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Content>
+    <Page Include="Views\BackupRestoreView.xaml">
+      <SubType>Form</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BarcodeScanningView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +192,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
@@ -219,5 +252,6 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.0-rc\tools\Microsoft.Bcl.Build.targets" />
+  <Import Project="Fody.targets" />
 </Project>

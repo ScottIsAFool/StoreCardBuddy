@@ -139,7 +139,20 @@ namespace ClubcardManager.ViewModel
                         SelectedCard = card;
                     }
                 }
+                if (m.Notification.Equals("RestoreCards"))
+                {
+                    Cards = (ObservableCollection<Card>) m.Sender;
+                    App.ShowMessage("Cards restored");
+                }
             });
+
+            Messenger.Default.Register<NotificationMessageAction<ObservableCollection<Card>>>(this, m =>
+                                                                                                        {
+                                                                                                            if (m.Notification.Equals("ShowMeTheCards"))
+                                                                                                            {
+                                                                                                                m.Execute(Cards);
+                                                                                                            }
+                                                                                                        });
         }
 
         public ObservableCollection<Card> SelectedCards { get; set; }
@@ -359,6 +372,12 @@ namespace ClubcardManager.ViewModel
             {
                 return new RelayCommand(() =>
                                             {
+                                                if (string.IsNullOrEmpty(SelectedCard.DisplayBarcode))
+                                                {
+                                                    MessageBox.Show("No barcode was entered, you really need one.", "Sorry, no barcode", MessageBoxButton.OK);
+                                                    return;
+                                                }
+
                                                 CheckBarcode();
                                                 if (DetailsPageTitle != "edit card details")
                                                 {
@@ -366,6 +385,7 @@ namespace ClubcardManager.ViewModel
                                                                                          {
                                                                                              new Parameter("CardProvider", SelectedCard.CardProvider.ProviderName)
                                                                                          });
+                                                    if (string.IsNullOrEmpty(SelectedCard.Name)) SelectedCard.Name = SelectedCard.CardProvider.ProviderName;
                                                     Cards.Add(SelectedCard);
                                                 }
                                                 navigationService.GoBack();

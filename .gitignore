@@ -4,6 +4,11 @@
 !Tools/Fody/*
 
 #################
+## Project specific
+#################
+SkyDriveAcces.txt
+
+#################
 ## Eclipse
 #################
 

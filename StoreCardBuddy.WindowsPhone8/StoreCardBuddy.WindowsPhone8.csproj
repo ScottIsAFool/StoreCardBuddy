@@ -25,6 +25,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <FodyPath>..\packages\Fody.1.13.6.0</FodyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +100,9 @@
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Converters\PinToStartConverter.cs">
       <Link>Converters\PinToStartConverter.cs</Link>
     </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\Card.cs">
       <Link>Model\Card.cs</Link>
     </Compile>
@@ -114,11 +118,18 @@
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\PhotoCameraLuminanceSource.cs">
       <Link>PhotoCameraLuminanceSource.cs</Link>
     </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\ViewModel\BackupRestoreViewModel.cs">
+      <Link>ViewModel\BackupRestoreViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\ViewModel\MainViewModel.cs">
       <Link>ViewModel\MainViewModel.cs</Link>
     </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\ViewModel\ViewModelLocator.cs">
       <Link>ViewModel\ViewModelLocator.cs</Link>
+    </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\BackupRestoreView.xaml.cs">
+      <Link>Views\BackupRestoreView.xaml.cs</Link>
+      <DependentUpon>BackupRestoreView.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Views\BarcodeScanningView.xaml.cs">
       <Link>Views\BarcodeScanningView.xaml.cs</Link>
@@ -148,6 +159,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ThemeManager.cs" />
+    <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +224,9 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardTile.png">
       <Link>Images\TescoClubcardTile.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\SkyDriveAccess.txt">
+      <Link>SkyDriveAccess.txt</Link>
+    </Content>
     <Content Include="Content\About\AboutStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -230,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Fonts\LiveSymbol.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -292,6 +308,12 @@
     <Reference Include="MessagingToolkit.Barcode">
       <HintPath>..\3plib\barcode-toolkit-8.0\MessagingToolkit.Barcode.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Live">
+      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Live.Controls">
+      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
@@ -299,9 +321,8 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.33.1.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ScottIsAFool.WindowsPhone">
       <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.13.0\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
@@ -320,6 +341,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\BackupRestoreView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BarcodeScanningView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -347,5 +372,5 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="$(ProjectDir)\..\Tools\Fody\Fody.targets" />
+  <Import Project="Fody.targets" />
 </Project>
