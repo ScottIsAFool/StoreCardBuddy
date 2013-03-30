@@ -86,6 +86,7 @@
                    MaxWidth="450"
                    MaxHeight="450"
                    Height="450"
+                   Stretch="None"
                    />
         </Grid>
     </Grid>

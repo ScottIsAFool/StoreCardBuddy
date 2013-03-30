@@ -68,9 +68,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="MessagingToolkit.Barcode">
-      <HintPath>..\3plib\barcode-toolkit-7.1\MessagingToolkit.Barcode.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone71\Microsoft.Live.dll</HintPath>
     </Reference>
@@ -128,8 +125,9 @@
     <None Include="app.config" />
     <None Include="Fody.targets" />
     <None Include="FodyWeavers.xml" />
-    <Reference Include="zxing.wp7.1">
-      <HintPath>..\packages\ZXing.Net.0.10.0.0\lib\sl4-wp71\zxing.wp7.1.dll</HintPath>
+    <Reference Include="zxing.wp7.1, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3plib\zxing.net\wp71\zxing.wp7.1.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

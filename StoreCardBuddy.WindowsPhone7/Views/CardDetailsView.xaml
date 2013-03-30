@@ -107,14 +107,16 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Orientation="Vertical">
-                    <Border Background="White" Margin="0,-350,0,0">
+                    <Border Background="White" Margin="0,-350,0,0"
+                            HorizontalAlignment="Center">
                         <Border.Clip>
                             <RectangleGeometry Rect="0 350 460 100"/>
                         </Border.Clip>
                         <Image Source="{Binding Main.SelectedCard, Source={StaticResource Locator}, Converter={StaticResource BarcodeToImageConverter}}"
                                MaxWidth="450"
                                Height="450"
-                               VerticalAlignment="Bottom"/>
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="Card name:"
                                Style="{StaticResource PhoneTextSubtleStyle}" />

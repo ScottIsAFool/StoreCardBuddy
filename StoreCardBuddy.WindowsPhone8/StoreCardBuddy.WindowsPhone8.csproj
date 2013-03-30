@@ -306,9 +306,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="MessagingToolkit.Barcode">
-      <HintPath>..\3plib\barcode-toolkit-8.0\MessagingToolkit.Barcode.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
     </Reference>
@@ -341,8 +338,9 @@
     <Reference Include="YourLastAboutDialog">
       <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.wp8.0">
-      <HintPath>..\packages\ZXing.Net.0.10.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
+    <Reference Include="zxing.wp8.0, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3plib\zxing.net\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -378,4 +376,12 @@
   -->
   <ProjectExtensions />
   <Import Project="Fody.targets" />
+  <PropertyGroup>
+    <FilesToXapDependsOn>$(FilesToXapDependsOn);BeforeFilesToXap</FilesToXapDependsOn>
+  </PropertyGroup>
+  <Target Name="BeforeFilesToXap">
+    <ItemGroup>
+      <FilteredPackagingOutputs Remove="@(FilteredPackagingOutputs)" Condition="'%(FilteredPackagingOutputs.OutputGroup)' == 'CopyLocalFilesOutputGroup' AND '%(FilteredPackagingOutputs.Extension)' == '.xml'"/>
+    </ItemGroup>
+  </Target>
 </Project>
