@@ -14,7 +14,8 @@ using Microsoft.Live;
 using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using LiveSDKHelper;
+using LiveSDKHelper.SkyDrive;
 
 namespace ClubcardManager.ViewModel
 {
@@ -96,12 +97,12 @@ namespace ClubcardManager.ViewModel
                                                                                         IsLoggedIn = true;
                                                                                         _client = new LiveConnectClient(args.Session);
 #if WP8
-                                                                                        var result = await _client.GetAsync("me");
-                                                                                        ProcessResult(result.Result);
+                                                                                        var result = await _client.GetAsync(LiveSdkConstants.MyDetails);
+                                                                                        ProcessResult(result.RawResult);
 #else
                                                                                         _client.GetCompleted += ClientOnGetCompleted;
                                                                                         _client.UploadCompleted += ClientOnUploadCompleted;
-                                                                                        _client.GetAsync("me", "loggedin");
+                                                                                        _client.GetAsync(LiveSdkConstants.MyDetails, "loggedin");
 #endif
                                                                                     }
                                                                                     else
@@ -113,9 +114,10 @@ namespace ClubcardManager.ViewModel
             }
         }
 
-        private void ProcessResult(IDictionary<string, object> result)
+        private void ProcessResult(string result)
         {
-            LoggedInAs = string.Format("Logged in as {0}", result["name"]);
+            var me = JsonConvert.DeserializeObject<MeDetails>(result);
+            LoggedInAs = string.Format("Logged in as {0}", me.Name);
         }
 
         public RelayCommand BackupSettingsCommand
@@ -164,39 +166,41 @@ namespace ClubcardManager.ViewModel
             ProgressIsVisible = true;
             ProgressText = "Restoring...";
 #if !WP8
-            _client.GetAsync("me/skydrive/files", "restorefiles");
+            _client.GetAsync(MeDetails.TopLevelSkyDriveFolder, "restorefiles");
 #else
-            var result = await _client.GetAsync("me/skydrive/files");
-            ProcessFiles(result.Result);
+            var result = await _client.GetAsync(MeDetails.TopLevelSkyDriveFolder);
+            ProcessFiles(result.RawResult);
 #endif
         }
 
-        private async void ProcessFiles(IDictionary<string, object> dictionary)
+        private async void ProcessFiles(string result)
         {
-            var fileId = string.Empty;
-            foreach (IDictionary<string, object> item in (List<object>)dictionary["data"])
+            var folder = JsonConvert.DeserializeObject<FolderDetails>(result);
+
+            if (folder.Items == null || !folder.Items.Any())
             {
-                if (item.ContainsKey("name") && (string)item["name"] == StoreCardBuddyFile)
-                {
-                    if (item.ContainsKey("id"))
-                    {
-                        fileId = (string)item["id"];
-                        break;
-                    }
-                }
+                App.ShowMessage("No backup could be found");
+                ProgressText = string.Empty;
+                ProgressIsVisible = false;
+                return;
             }
 
+            var fileId = folder.Items
+                               .Where(item => item.Name == StoreCardBuddyFile)
+                               .Select(x => x.Id)
+                               .SingleOrDefault();
+            
             if (!string.IsNullOrEmpty(fileId))
             {
                 if (!_navigationService.IsNetworkAvailable) return;
 #if !WP8
                 _client.DownloadCompleted += ClientOnDownloadCompleted;
-                _client.DownloadAsync(fileId + "/content");
+                _client.DownloadAsync(SkyDriveHelper.GetFile(fileId));
 #else
                 try
                 {
-                    var result = await _client.DownloadAsync(fileId + "/content");
-                    ParseFileContent(result.Stream);
+                    var file = await _client.DownloadAsync(SkyDriveHelper.GetFile(fileId));
+                    ParseFileContent(file.Stream);
                 }
                 catch
                 {
@@ -211,7 +215,7 @@ namespace ClubcardManager.ViewModel
                 ProgressIsVisible = false;
             }
         }
-        
+
         private void ParseFileContent(Stream stream)
         {
             using (var reader = new StreamReader(stream, Encoding.UTF8))
@@ -222,6 +226,8 @@ namespace ClubcardManager.ViewModel
                 var cards = JsonConvert.DeserializeObject<ObservableCollection<Card>>(cardString);
 
                 Messenger.Default.Send(new NotificationMessage(cards, "RestoreCards"));
+                ProgressText = string.Empty;
+                ProgressIsVisible = false;
             }
         }
 
@@ -252,17 +258,15 @@ namespace ClubcardManager.ViewModel
             var cardString = JsonConvert.SerializeObject(cards);
             var bytes = Encoding.UTF8.GetBytes(cardString);
             var encodedString = Convert.ToBase64String(bytes);
-
-            var path = "me/skydrive/";
-
+            
             try
             {
                 using (var stream = encodedString.ToStream())
                 {
 #if !WP8
-                    _client.UploadAsync(path, StoreCardBuddyFile, stream, OverwriteOption.Overwrite);
+                    _client.UploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, stream, OverwriteOption.Overwrite);
 #else
-                    var result = await _client.UploadAsync(path, StoreCardBuddyFile, stream, OverwriteOption.Overwrite);
+                    var result = await _client.UploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, stream, OverwriteOption.Overwrite);
 
                     App.ShowMessage("Backup completed successfully.");
                     ProgressText = string.Empty;
@@ -306,10 +310,10 @@ namespace ClubcardManager.ViewModel
             switch (state)
             {
                 case "loggedin":
-                    ProcessResult(e.Result);
+                    ProcessResult(e.RawResult);
                     break;
                 case "restorefiles":
-                    ProcessFiles(e.Result);
+                    ProcessFiles(e.RawResult);
                     break;
             }
         }

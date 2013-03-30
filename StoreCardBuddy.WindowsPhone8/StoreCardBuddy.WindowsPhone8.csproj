@@ -306,6 +306,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
+    <Reference Include="LiveSDKHelper, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.0\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
     </Reference>
@@ -340,7 +344,7 @@
     </Reference>
     <Reference Include="zxing.wp8.0, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3plib\zxing.net\wp8\zxing.wp8.0.dll</HintPath>
+      <HintPath>..\packages\ZXing.Net.0.11.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -381,7 +385,7 @@
   </PropertyGroup>
   <Target Name="BeforeFilesToXap">
     <ItemGroup>
-      <FilteredPackagingOutputs Remove="@(FilteredPackagingOutputs)" Condition="'%(FilteredPackagingOutputs.OutputGroup)' == 'CopyLocalFilesOutputGroup' AND '%(FilteredPackagingOutputs.Extension)' == '.xml'"/>
+      <FilteredPackagingOutputs Remove="@(FilteredPackagingOutputs)" Condition="'%(FilteredPackagingOutputs.OutputGroup)' == 'CopyLocalFilesOutputGroup' AND '%(FilteredPackagingOutputs.Extension)' == '.xml'" />
     </ItemGroup>
   </Target>
 </Project>
