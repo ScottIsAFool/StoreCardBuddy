@@ -1,7 +1,10 @@
-Store Card Buddy - v1.0
+Store Card Buddy - v8.0.1
 
 WHAT IS IT?
 An app that lets you remember your store cards on your phone so you don't have to carry them round with you. Mileage may vary depending on the store's scanners. You can also backup/restore your cards (encrypted) to your Skydrive folder and add cards to your phone's wallet.
+
+WHAT'S NEW 
+- Added Ikea and Jewel-Osco cards
 
 FEEDBACK
 IF you have any feedback, do please get in touch on twitter (Hi, I'm @scottisafool) or email me at scottisafool@live.co.uk
