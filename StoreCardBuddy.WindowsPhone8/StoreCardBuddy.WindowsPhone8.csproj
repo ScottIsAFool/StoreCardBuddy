@@ -176,8 +176,26 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveTile.png">
       <Link>Images\EveryoneActiveTile.png</Link>
     </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Ikea.png">
+      <Link>Images\Ikea.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\IkeaSquare.png">
+      <Link>Images\IkeaSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\IkeaTile.png">
+      <Link>Images\IkeaTile.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\InvalidData.png">
       <Link>Images\InvalidData.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOsco.png">
+      <Link>Images\JewelOsco.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOscoSquare.png">
+      <Link>Images\JewelOscoSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOscoTile.png">
+      <Link>Images\JewelOscoTile.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCard.png">
       <Link>Images\NectarCard.png</Link>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
-  <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{e995cb55-807b-4cec-91e4-5d471f7f087d}" Title="Store Card Buddy" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="ClubcardManager.WindowsPhone8 author" Description="An app that lets you remember your store cards on your phone so you don't have to carry them round with you." Publisher="ClubcardManager.WindowsPhone8" PublisherID="{8921f05c-2680-4e54-9d3f-d9dae643356e}">
+  <DefaultLanguage xmlns="" code="en-GB" />
+  <App xmlns="" ProductID="{e995cb55-807b-4cec-91e4-5d471f7f087d}" Title="Store Card Buddy" RuntimeType="Silverlight" Version="8.0.1.8" Genre="apps.normal" Author="ClubcardManager.WindowsPhone8 author" Description="An app that lets you remember your store cards on your phone so you don't have to carry them round with you." Publisher="ClubcardManager.WindowsPhone8" PublisherID="{8921f05c-2680-4e54-9d3f-d9dae643356e}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

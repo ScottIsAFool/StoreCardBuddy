@@ -49,6 +49,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Images\Ikea.png" />
+    <Content Include="Images\IkeaSquare.png" />
+    <Content Include="Images\IkeaTile.png" />
+    <Content Include="Images\JewelOsco.png" />
+    <Content Include="Images\JewelOscoSquare.png" />
+    <Content Include="Images\JewelOscoTile.png" />
     <Content Include="SkyDriveAccess.txt" />
     <Reference Include="Cimbalino.Phone.Toolkit">
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
