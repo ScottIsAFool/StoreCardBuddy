@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Navigation;
 
-namespace ClubcardManager.Model
+namespace StoreCardBuddy.Model
 {
     public interface INavigationService
     {

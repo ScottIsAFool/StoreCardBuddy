@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Navigation;
+using ClubcardManager;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
 
-namespace ClubcardManager.Model
+namespace StoreCardBuddy.Model
 {
     public class NavigationService : INavigationService
     {

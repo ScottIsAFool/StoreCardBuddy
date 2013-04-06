@@ -2,22 +2,20 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using ClubcardManager.Model;
-using ClubcardManager.Resources;
-using ClubcardManager.ViewModel;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using StoreCardBuddy.Model;
+using StoreCardBuddy.ViewModel;
 
-namespace ClubcardManager
+namespace StoreCardBuddy
 {
     public partial class App : Application
     {
@@ -258,7 +256,7 @@ namespace ClubcardManager
                 //
                 // If a compiler error is hit then ResourceLanguage is missing from
                 // the resource file.
-                RootFrame.Language = XmlLanguage.GetLanguage(AppResources.ResourceLanguage);
+                //RootFrame.Language = XmlLanguage.GetLanguage(AppResources.ResourceLanguage);
 
                 // Set the FlowDirection of all elements under the root frame based
                 // on the ResourceFlowDirection resource string for each
@@ -266,8 +264,7 @@ namespace ClubcardManager
                 //
                 // If a compiler error is hit then ResourceFlowDirection is missing from
                 // the resource file.
-                FlowDirection flow = (FlowDirection)Enum.Parse(typeof(FlowDirection), AppResources.ResourceFlowDirection);
-                RootFrame.FlowDirection = flow;
+                RootFrame.FlowDirection = FlowDirection.LeftToRight;
             }
             catch
             {

@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:ClubcardManager"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:StoreCardBuddy.WindowsRT"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -12,11 +12,11 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using StoreCardBuddy.Model;
 
-namespace StoreCardBuddy.ViewModel
+namespace StoreCardBuddy.WindowsRT.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -42,10 +42,7 @@ namespace StoreCardBuddy.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
-                SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<BackupRestoreViewModel>(true);
         }
 
         public MainViewModel Main
@@ -54,11 +51,6 @@ namespace StoreCardBuddy.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
-        }
-
-        public BackupRestoreViewModel BackupRestore
-        {
-            get { return ServiceLocator.Current.GetInstance<BackupRestoreViewModel>(); }
         }
         
         public static void Cleanup()

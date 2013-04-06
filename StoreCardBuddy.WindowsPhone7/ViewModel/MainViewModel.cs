@@ -5,14 +5,13 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using ClubcardManager.Model;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using StoreCardBuddy.Model;
 using ZXing;
-
 #if WP8
 using Flurry = FlurryWP8SDK;
 using FlurryWP8SDK.Models;
@@ -23,7 +22,7 @@ using Flurry = FlurryWP7SDK;
 using FlurryWP7SDK.Models;
 #endif
 
-namespace ClubcardManager.ViewModel
+namespace StoreCardBuddy.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.

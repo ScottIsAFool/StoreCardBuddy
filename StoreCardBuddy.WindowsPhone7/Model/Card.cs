@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using ZXing;
 
-namespace ClubcardManager.Model
+namespace StoreCardBuddy.Model
 {
     public class Card : INotifyPropertyChanged
     {

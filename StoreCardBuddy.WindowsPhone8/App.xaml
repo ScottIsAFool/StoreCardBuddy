@@ -1,18 +1,14 @@
-﻿<Application x:Class="ClubcardManager.App"
+﻿<Application x:Class="StoreCardBuddy.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-             xmlns:model="clr-namespace:ClubcardManager.Model"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:scottConverters="clr-namespace:ScottIsAFool.WindowsPhone.Converters;assembly=ScottIsAFool.WindowsPhone"
-             xmlns:converters="clr-namespace:ClubcardManager.Converters"
-             xmlns:vm="clr-namespace:ClubcardManager.ViewModel">
-
+             xmlns:converters="clr-namespace:StoreCardBuddy.Converters"
+             xmlns:vm="clr-namespace:StoreCardBuddy.ViewModel" xmlns:model="clr-namespace:StoreCardBuddy.Model">
     <!--Application Resources-->
     <Application.Resources>
-        <local:LocalizedStrings xmlns:local="clr-namespace:ClubcardManager"
-                                x:Key="LocalizedStrings" />
         <system:String x:Key="AppName">Store Card Buddy</system:String>
         <!-- Converters from ScottIsAFool.WindowsPhone.Converters -->
         <scottConverters:VisibilityConverter x:Key="VisibilityConverter" />

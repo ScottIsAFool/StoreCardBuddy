@@ -9,7 +9,7 @@
                             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                             xmlns:cimbalino="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-                            xmlns:behaviours2="clr-namespace:ClubcardManager.WindowsPhone.Behaviours"
+                            xmlns:behaviours="clr-namespace:StoreCardBuddy.Behaviours"
                             mc:Ignorable="d ignore"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -122,7 +122,7 @@
                     <toolkit:PhoneTextBox Text="{Binding Name, Mode=TwoWay}"
                                           InputScope="Chat">
                         <i:Interaction.Behaviors>
-                            <behaviours2:UpdateTextBindingOnPropertyChanged />
+                            <behaviours:UpdateTextBindingOnPropertyChanged />
                         </i:Interaction.Behaviors>
                     </toolkit:PhoneTextBox>
                     <toolkit:ListPicker ItemsSource="{Binding Source={StaticResource CardProviders}}"
@@ -135,7 +135,7 @@
                     <toolkit:PhoneTextBox Text="{Binding DisplayBarcode, Mode=TwoWay}"
                                           InputScope="Number">
                         <i:Interaction.Behaviors>
-                            <behaviours2:UpdateTextBindingOnPropertyChanged />
+                            <behaviours:UpdateTextBindingOnPropertyChanged />
                         </i:Interaction.Behaviors>
                     </toolkit:PhoneTextBox>
                 </StackPanel>

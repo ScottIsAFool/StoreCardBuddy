@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using ClubcardManager.Model;
+using ClubcardManager;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -16,8 +15,9 @@ using Microsoft.Phone.Controls;
 using Newtonsoft.Json;
 using LiveSDKHelper;
 using LiveSDKHelper.SkyDrive;
+using StoreCardBuddy.Model;
 
-namespace ClubcardManager.ViewModel
+namespace StoreCardBuddy.ViewModel
 {
     /// <summary>
     /// This class contains properties that a View can data bind to.

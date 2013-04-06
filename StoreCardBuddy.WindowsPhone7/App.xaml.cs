@@ -4,17 +4,16 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using ClubcardManager.Model;
-using ClubcardManager.ViewModel;
 using Coding4Fun.Toolkit.Controls;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Newtonsoft.Json;
 using ScottIsAFool.WindowsPhone.IsolatedStorage;
+using StoreCardBuddy.Model;
+using StoreCardBuddy.ViewModel;
 
-namespace ClubcardManager
+namespace StoreCardBuddy
 {
     public partial class App : Application
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Data;
-using ClubcardManager.Model;
+using StoreCardBuddy.Model;
 using ZXing;
 using ZXing.Common;
 
-namespace ClubcardManager.Converters
+namespace StoreCardBuddy.Converters
 {
     public class BarcodeToImageConverter : IValueConverter
     {

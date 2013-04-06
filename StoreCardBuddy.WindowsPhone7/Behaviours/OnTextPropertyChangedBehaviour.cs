@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
-namespace ClubcardManager.WindowsPhone.Behaviours
+namespace StoreCardBuddy.Behaviours
 {
     public class UpdateTextBindingOnPropertyChanged : Behavior<TextBox>
     {

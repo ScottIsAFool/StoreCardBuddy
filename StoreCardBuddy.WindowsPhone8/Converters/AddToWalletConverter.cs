@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 
-namespace ClubcardManager.Converters
+namespace StoreCardBuddy.Converters
 {
     public class AddToWalletConverter : IValueConverter
     {

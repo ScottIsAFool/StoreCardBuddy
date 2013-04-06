@@ -1,7 +1,7 @@
-﻿using ClubcardManager.ViewModel;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Live.Controls;
 using Microsoft.Phone.Controls;
+using StoreCardBuddy.ViewModel;
 
 namespace ClubcardManager.Views
 {
