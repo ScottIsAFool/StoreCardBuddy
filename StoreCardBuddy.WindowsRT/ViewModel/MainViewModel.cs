@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.WindowsRT;
 using StoreCardBuddy.WindowsRT.Model;
+using StoreCardBuddy.WindowsRT.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ZXing;
@@ -145,7 +146,7 @@ namespace StoreCardBuddy.ViewModel
 
                     // Navigate to the card editing page
                     DetailsPageTitle = "add new card";
-                    //navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
+                    navigationService.Navigate<CardDetailsView>();
                 }
                 if (m.Notification.Equals("PinnedBarcodeFound"))
                 {
@@ -197,14 +198,11 @@ namespace StoreCardBuddy.ViewModel
         
         public string DetailsPageTitle { get; set; }
 
-        public RelayCommand<string> NavigateToPageCommand
+        public RelayCommand AddNewBarcodeCommand
         {
             get
             {
-                return new RelayCommand<string>(url =>
-                                                    {
-                                                        //navigationService.Navigate(new object())
-                                                    });
+                return new RelayCommand(() => navigationService.Navigate<ScanBarcodeView>());
             }
         }
 
@@ -340,7 +338,7 @@ namespace StoreCardBuddy.ViewModel
                                                     if (string.IsNullOrEmpty(SelectedCard.Name)) SelectedCard.Name = SelectedCard.CardProvider.ProviderName;
                                                     Cards.Add(SelectedCard);
                                                 }
-                                                navigationService.GoBack();
+                                                navigationService.Navigate<MainView>();
                                             });
             }
         }
@@ -351,7 +349,7 @@ namespace StoreCardBuddy.ViewModel
             {
                 return new RelayCommand(() =>
                                             {
-                                                navigationService.GoBack();
+                                                navigationService.Navigate<MainView>();
                                                 SelectedCard = null;
                                             });
             }

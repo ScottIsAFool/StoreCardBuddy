@@ -1,14 +1,22 @@
 ﻿using System;
-using System.Windows.Data;
 using StoreCardBuddy.Model;
 using ZXing;
 using ZXing.Common;
+#if !WIN8
+using System.Windows.Data;
+#else
+using Windows.UI.Xaml.Data;
+#endif
 
 namespace StoreCardBuddy.Converters
 {
     public class BarcodeToImageConverter : IValueConverter
     {
+#if WIN8
+        public object Convert(object value, Type targetType, object parameter, string language)
+#else
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+#endif
         {
             if (value != null)
             {
@@ -28,7 +36,7 @@ namespace StoreCardBuddy.Converters
                                                        ? new EncodingOptions
                                                              {
                                                                  Height = 100,
-                                                                 Width = 450
+                                                                 Width = 450,
                                                              }
                                                        : new EncodingOptions
                                                              {
@@ -47,7 +55,11 @@ namespace StoreCardBuddy.Converters
             return null;
         }
 
+#if WIN8
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+#else
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+#endif
         {
             throw new NotImplementedException();
         }

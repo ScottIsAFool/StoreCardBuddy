@@ -102,6 +102,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Converters\BarcodeToImageConverter.cs">
+      <Link>Converters\BarcodeToImageConverter.cs</Link>
+    </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\Card.cs">
       <Link>Model\Card.cs</Link>
     </Compile>
@@ -118,6 +121,7 @@
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
+    <Compile Include="Common\MessageBoxHelper.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Converters\CountToEnabled.cs" />
@@ -125,8 +129,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\CardDetailsView.xaml.cs">
+      <DependentUpon>CardDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScanBarcodeView.xaml.cs">
+      <DependentUpon>ScanBarcodeView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +254,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CardDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScanBarcodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,8 +296,8 @@
     <Reference Include="WriteableBitmapEx.WinRT">
       <HintPath>..\packages\WriteableBitmapEx.1.0.7.0\lib\NetCore45\WriteableBitmapEx.WinRT.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.portable">
-      <HintPath>..\packages\ZXing.Net.0.11.0.0\lib\portable-win+net40+sl4+sl5+wp7+wp71+wp8\zxing.portable.dll</HintPath>
+    <Reference Include="zxing.winrt">
+      <HintPath>..\3plib\zxing.net-0.11.0.0\windows8-managed\zxing.winrt.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

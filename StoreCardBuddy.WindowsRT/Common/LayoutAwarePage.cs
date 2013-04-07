@@ -370,7 +370,8 @@ namespace StoreCardBuddy.WindowsRT.Common
             var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
             var pageState = new Dictionary<String, Object>();
             this.SaveState(pageState);
-            frameState[_pageKey] = pageState;
+            if (_pageKey != null)
+                frameState[_pageKey] = pageState;
         }
 
         /// <summary>

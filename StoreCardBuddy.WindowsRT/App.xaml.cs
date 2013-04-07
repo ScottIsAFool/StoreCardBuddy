@@ -1,4 +1,6 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Ioc;
+using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -48,6 +50,9 @@ namespace StoreCardBuddy.WindowsRT
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                var nav = SimpleIoc.Default.GetInstance<NavigationService>();
+                nav.Frame = rootFrame;
             }
 
             if (rootFrame.Content == null)

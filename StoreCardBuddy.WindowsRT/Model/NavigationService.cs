@@ -8,11 +8,21 @@ namespace StoreCardBuddy.WindowsRT.Model
     public class NavigationService
     {
         private Frame _frame;
-        public Frame Frame { set { _frame = value; } }
+        public Frame Frame
+        {
+            set
+            {
+                _frame = value;
+                _originalState = _frame.GetNavigationState();
+            }
+        }
+        private string _originalState;
+
 
         public NavigationService(Frame frame)
         {
             _frame = frame;
+            _originalState = _frame.GetNavigationState();
         }
 
         [PreferredConstructor]
@@ -53,6 +63,11 @@ namespace StoreCardBuddy.WindowsRT.Model
         {
             var type = typeof(T);
             Navigate(type, parameter);
+        }
+
+        public void ClearBackStack()
+        {
+            _frame.SetNavigationState(_originalState);
         }
 
         public bool IsNetworkAvailable

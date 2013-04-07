@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using StoreCardBuddy.ViewModel;
 using StoreCardBuddy.WindowsRT.Model;
+using Windows.UI.Xaml.Controls;
 
 namespace StoreCardBuddy.WindowsRT.ViewModel
 {
@@ -33,19 +34,18 @@ namespace StoreCardBuddy.WindowsRT.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                if (!SimpleIoc.Default.IsRegistered<NavigationService>())
+                    SimpleIoc.Default.Register(
+                        () => new NavigationService(new Frame()));
+            }
+            else
+            {
+                if (!SimpleIoc.Default.IsRegistered<NavigationService>())
+                    SimpleIoc.Default.Register<NavigationService>();
+            }
 
-            if(!SimpleIoc.Default.IsRegistered<NavigationService>())
-                SimpleIoc.Default.Register<NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 

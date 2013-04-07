@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application x:Class="StoreCardBuddy.WindowsRT.App"
+﻿<Application x:Class="StoreCardBuddy.WindowsRT.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:StoreCardBuddy.WindowsRT"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:StoreCardBuddy.WindowsRT.ViewModel" xmlns:system="using:System"
-             xmlns:model="using:StoreCardBuddy.Model"
+             xmlns:model="using:StoreCardBuddy.Model" xmlns:converters="using:StoreCardBuddy.Converters"
              mc:Ignorable="d"
              RequestedTheme="Light">
     <Application.Resources>
@@ -20,8 +19,11 @@
             </ResourceDictionary.MergedDictionaries>
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
-            <system:String x:Key="AppName">Store Card Buddy</system:String>
-            <SolidColorBrush x:Key="AppBackground">#89FFD559</SolidColorBrush>
+            <x:String x:Key="AppName">Store Card Buddy</x:String>
+            <SolidColorBrush x:Key="AppBackground">#FFD559</SolidColorBrush>
+            
+            <!-- Converters -->
+            <converters:BarcodeToImageConverter x:Key="BarcodeToImageConverter"/>
 
             <model:CardProviders x:Key="CardProviders"
                                  x:Name="TheCardProviders" />
