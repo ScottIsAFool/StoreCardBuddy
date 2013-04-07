@@ -40,7 +40,8 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
                     <Button Style="{StaticResource DeleteAppBarButtonStyle}"
-                            IsEnabled="{Binding SelectedCards.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}" />
+                            IsEnabled="{Binding SelectedCards.Count, Converter={StaticResource CountToEnabled}, ConverterParameter=delete}"
+                            Command="{Binding DeleteItemsCommand}"/>
                 </StackPanel>
             </Grid>
         </AppBar>

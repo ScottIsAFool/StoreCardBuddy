@@ -78,11 +78,11 @@ namespace StoreCardBuddy.WindowsRT
 
         private async Task GetCards()
         {
-            var loader = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
+            //var loader = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
 
-            var cards = await loader.LoadAsync("Cards");
+            //var cards = await loader.LoadAsync("Cards");
 
-            SimpleIoc.Default.GetInstance<MainViewModel>().Cards = cards;
+            //SimpleIoc.Default.GetInstance<MainViewModel>().Cards = cards;
         }
 
         /// <summary>

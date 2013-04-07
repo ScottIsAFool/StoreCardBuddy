@@ -5,6 +5,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using ReflectionIT.Windows8.Helpers;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.WindowsRT;
 using StoreCardBuddy.WindowsRT.Model;
@@ -288,16 +289,17 @@ namespace StoreCardBuddy.ViewModel
         {
             get
             {
-                return new RelayCommand(() =>
-                                            {
-                                                //var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
-                                                //if (result == MessageBoxResult.OK)
-                                                //{
-                                                //    var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
-                                                    
-                                                //    Cards = new ObservableCollection<Card>(temp);
-                                                //}
-                                            });
+                return new RelayCommand(async () =>
+                                                  {
+                                                      var result = await MessageBox.ShowAsync("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.YesNo);
+                                                      //var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
+                                                      if (result == MessageBoxResult.Yes)
+                                                      {
+                                                          var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
+
+                                                          Cards = new ObservableCollection<Card>(temp);
+                                                      }
+                                                  });
             }
         }
 
