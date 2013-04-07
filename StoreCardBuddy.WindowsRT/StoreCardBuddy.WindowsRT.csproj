@@ -12,8 +12,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>StoreCardBuddy.WindowsRT_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>StoreCardBuddy.WindowsRT_StoreKey.pfx</PackageCertificateKeyFile>
     <FodyPath>..\packages\Fody.1.13.6.1</FodyPath>
+    <PackageCertificateThumbprint>40763E99F9E5E0AC0CFCC73170A10E18A78D76F6</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WIN8</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -101,6 +102,15 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\Card.cs">
+      <Link>Model\Card.cs</Link>
+    </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\CardProvider.cs">
+      <Link>Model\CardProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\CardProviders.cs">
+      <Link>Model\CardProviders.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -110,6 +120,8 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Converters\CountToEnabled.cs" />
+    <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -121,13 +133,101 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActive.png">
+      <Link>Images\EveryoneActive.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveSquare.png">
+      <Link>Images\EveryoneActiveSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActiveTile.png">
+      <Link>Images\EveryoneActiveTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Ikea.png">
+      <Link>Images\Ikea.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\IkeaSquare.png">
+      <Link>Images\IkeaSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\IkeaTile.png">
+      <Link>Images\IkeaTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\InvalidData.png">
+      <Link>Images\InvalidData.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOsco.png">
+      <Link>Images\JewelOsco.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOscoSquare.png">
+      <Link>Images\JewelOscoSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\JewelOscoTile.png">
+      <Link>Images\JewelOscoTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCard.png">
+      <Link>Images\NectarCard.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCardSquare.png">
+      <Link>Images\NectarCardSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\NectarCardTile.png">
+      <Link>Images\NectarCardTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Other.png">
+      <Link>Images\Other.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\OtherSquare.png">
+      <Link>Images\OtherSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\OtherTile.png">
+      <Link>Images\OtherTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHome.png">
+      <Link>Images\PetsAtHome.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeSquare.png">
+      <Link>Images\PetsAtHomeSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\PetsAtHomeTile.png">
+      <Link>Images\PetsAtHomeTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\Subway.png">
+      <Link>Images\Subway.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\SubwaySquare.png">
+      <Link>Images\SubwaySquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\SubwayTile.png">
+      <Link>Images\SubwayTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcard.png">
+      <Link>Images\TescoClubcard.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardSquare.png">
+      <Link>Images\TescoClubcardSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardTile.png">
+      <Link>Images\TescoClubcardTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAU.png">
+      <Link>Images\WoolworthsAU.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAUSquare.png">
+      <Link>Images\WoolworthsAUSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAUTile.png">
+      <Link>Images\WoolworthsAUTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\SkyDriveAccess.txt">
+      <Link>SkyDriveAccess.txt</Link>
+    </Content>
     <Content Include="Common\ReadMe.txt" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <Content Include="MVVMLight.Nuget.Readme.txt" />
+    <None Include="Package.StoreAssociation.xml" />
     <None Include="Fody.targets" />
     <None Include="packages.config" />
-    <None Include="StoreCardBuddy.WindowsRT_TemporaryKey.pfx" />
+    <None Include="StoreCardBuddy.WindowsRT_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
@@ -150,6 +250,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Callisto">
+      <HintPath>..\packages\Callisto.1.2.7\lib\winrt45\Callisto.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
     </Reference>
@@ -179,9 +282,7 @@
       <HintPath>..\packages\ZXing.Net.0.11.0.0\lib\portable-win+net40+sl4+sl5+wp7+wp71+wp8\zxing.portable.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

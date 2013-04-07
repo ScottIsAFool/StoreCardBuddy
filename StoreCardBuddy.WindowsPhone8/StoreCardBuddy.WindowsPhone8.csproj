@@ -109,6 +109,9 @@
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\CardProvider.cs">
       <Link>Model\CardProvider.cs</Link>
     </Compile>
+    <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\CardProviders.cs">
+      <Link>Model\CardProviders.cs</Link>
+    </Compile>
     <Compile Include="..\StoreCardBuddy.WindowsPhone7\Model\INavigationService.cs">
       <Link>Model\INavigationService.cs</Link>
     </Compile>
@@ -235,6 +238,15 @@
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\TescoClubcardTile.png">
       <Link>Images\TescoClubcardTile.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAU.png">
+      <Link>Images\WoolworthsAU.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAUSquare.png">
+      <Link>Images\WoolworthsAUSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\WoolworthsAUTile.png">
+      <Link>Images\WoolworthsAUTile.png</Link>
     </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\SkyDriveAccess.txt">
       <Link>SkyDriveAccess.txt</Link>

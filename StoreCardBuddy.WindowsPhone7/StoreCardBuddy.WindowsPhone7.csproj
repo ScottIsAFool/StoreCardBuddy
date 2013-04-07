@@ -55,6 +55,9 @@
     <Content Include="Images\JewelOsco.png" />
     <Content Include="Images\JewelOscoSquare.png" />
     <Content Include="Images\JewelOscoTile.png" />
+    <Content Include="Images\WoolworthsAU.png" />
+    <Content Include="Images\WoolworthsAUSquare.png" />
+    <Content Include="Images\WoolworthsAUTile.png" />
     <Content Include="SkyDriveAccess.txt" />
     <Reference Include="Cimbalino.Phone.Toolkit">
       <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
@@ -156,6 +159,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\CardProvider.cs" />
+    <Compile Include="Model\CardProviders.cs" />
     <Compile Include="Model\INavigationService.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="PhotoCameraLuminanceSource.cs" />

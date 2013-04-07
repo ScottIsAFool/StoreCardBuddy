@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using ZXing;
 
 namespace StoreCardBuddy.Model
@@ -27,9 +26,5 @@ namespace StoreCardBuddy.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-    }
-
-    public class CardProviders : ObservableCollection<CardProvider>
-    {
     }
 }

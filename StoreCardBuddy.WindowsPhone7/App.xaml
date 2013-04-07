@@ -25,47 +25,7 @@
                                  d:IsDataSource="True" />
             
             <model:CardProviders x:Key="CardProviders"
-                                 x:Name="TheCardProviders">
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Tesco Clubcard</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>CODE_39</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/TescoClubcard.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Nectar Card</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/NectarCard.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Everyone Active</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/EveryoneActive.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Pets at Home</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/PetsAtHome.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Ikea</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>CODE_128</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/Ikea.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Jewel-Osco</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>UPC_A</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/JewelOsco.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Subway</model:CardProvider.ProviderName>
-                    <model:CardProvider.BarcodeFormat>DATA_MATRIX</model:CardProvider.BarcodeFormat>
-                    <model:CardProvider.ImageUrl>/Images/Subway.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-                <model:CardProvider>
-                    <model:CardProvider.ProviderName>Other</model:CardProvider.ProviderName>
-                    <model:CardProvider.ImageUrl>/Images/Other.png</model:CardProvider.ImageUrl>
-                </model:CardProvider>
-            </model:CardProviders>
+                                 x:Name="TheCardProviders"/>
 
             <!-- Control Styles -->
             <Style x:Key="EmptyButtonStyle"

@@ -119,6 +119,33 @@ namespace StoreCardBuddy.ViewModel
                         SelectedCardIndex = 0;
                         OnSelectedCardIndexChanged();
                     }
+                    else if (result.BarcodeFormat == BarcodeFormat.CODABAR)
+                    {
+                        var needsStartingA = false;
+                        var needsClosingA = false;
+                        if (!result.Text.ToLower().StartsWith("a") && 
+                            !result.Text.ToLower().StartsWith("b") && 
+                            !result.Text.ToLower().StartsWith("c") && 
+                            !result.Text.ToLower().StartsWith("d"))
+                        {
+                            needsStartingA = true;
+                        }
+
+                        if (!result.Text.ToLower().EndsWith("a") &&
+                            !result.Text.ToLower().EndsWith("b") &&
+                            !result.Text.ToLower().EndsWith("c") &&
+                            !result.Text.ToLower().EndsWith("d"))
+                        {
+                            needsClosingA = true;
+                        }
+
+                        SelectedCard.OriginalBarcode = SelectedCard.DisplayBarcode = result.Text;
+                        if (needsStartingA) SelectedCard.OriginalBarcode = "A" + SelectedCard.OriginalBarcode;
+
+                        if (needsClosingA) SelectedCard.OriginalBarcode = SelectedCard.OriginalBarcode + "T";
+
+                        SelectedCardIndex = 1;
+                    }
                     else
                     {
                         SelectedCard.OriginalBarcode = SelectedCard.DisplayBarcode = result.Text;

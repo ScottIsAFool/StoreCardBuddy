@@ -15,6 +15,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using StoreCardBuddy.ViewModel;
+using StoreCardBuddy.WindowsRT.Model;
 
 namespace StoreCardBuddy.WindowsRT.ViewModel
 {
@@ -42,6 +44,8 @@ namespace StoreCardBuddy.WindowsRT.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
+            if(!SimpleIoc.Default.IsRegistered<NavigationService>())
+                SimpleIoc.Default.Register<NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 

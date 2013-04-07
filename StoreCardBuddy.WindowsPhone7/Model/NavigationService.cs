@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Windows;
+#if !WIN8
 using System.Windows.Navigation;
 using ClubcardManager;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Net.NetworkInformation;
+#else
+
+#endif
 
 namespace StoreCardBuddy.Model
 {

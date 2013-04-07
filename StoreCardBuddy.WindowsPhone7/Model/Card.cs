@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.Windows;
 using ZXing;
+#if WIN8
+using Windows.UI.Xaml;
+#endif
 
 namespace StoreCardBuddy.Model
 {

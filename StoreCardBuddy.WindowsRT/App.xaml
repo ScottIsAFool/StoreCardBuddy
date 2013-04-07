@@ -5,8 +5,10 @@
              xmlns:local="using:StoreCardBuddy.WindowsRT"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:StoreCardBuddy.WindowsRT.ViewModel"
-             mc:Ignorable="d">
+             xmlns:vm="using:StoreCardBuddy.WindowsRT.ViewModel" xmlns:system="using:System"
+             xmlns:model="using:StoreCardBuddy.Model"
+             mc:Ignorable="d"
+             RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,6 +20,11 @@
             </ResourceDictionary.MergedDictionaries>
             <vm:ViewModelLocator x:Key="Locator"
                                  d:IsDataSource="True" />
+            <system:String x:Key="AppName">Store Card Buddy</system:String>
+            <SolidColorBrush x:Key="AppBackground">#89FFD559</SolidColorBrush>
+
+            <model:CardProviders x:Key="CardProviders"
+                                 x:Name="TheCardProviders" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
