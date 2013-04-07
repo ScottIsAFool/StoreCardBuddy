@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
+using StoreCardBuddy.Model;
+using StoreCardBuddy.ViewModel;
 using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
+using WinRtUtility;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -32,9 +37,11 @@ namespace StoreCardBuddy.WindowsRT
         /// search results, and so forth.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+
+            await GetCards();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -69,6 +76,15 @@ namespace StoreCardBuddy.WindowsRT
             Window.Current.Activate();
         }
 
+        private async Task GetCards()
+        {
+            var loader = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
+
+            var cards = await loader.LoadAsync("Cards");
+
+            SimpleIoc.Default.GetInstance<MainViewModel>().Cards = cards;
+        }
+
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
         /// without knowing whether the application will be terminated or resumed with the contents
@@ -76,10 +92,15 @@ namespace StoreCardBuddy.WindowsRT
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+
+            var saver = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
+
+            await saver.SaveAsync(SimpleIoc.Default.GetInstance<MainViewModel>().Cards, "Cards");
+
             deferral.Complete();
         }
     }

@@ -7,7 +7,7 @@
     <ProjectGuid>{8854D413-E513-47EC-A206-00140EDCD881}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StoreCardBuddy.WindowsRT</RootNamespace>
+    <RootNamespace>StoreCardBuddy</RootNamespace>
     <AssemblyName>StoreCardBuddy.WindowsRT</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -292,6 +292,9 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\WinRT45\PropertyChanged.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="WinRtUtility">
+      <HintPath>..\packages\ObjectStorageHelper.5.0.0\lib\netcore45\WinRtUtility.dll</HintPath>
     </Reference>
     <Reference Include="WriteableBitmapEx.WinRT">
       <HintPath>..\packages\WriteableBitmapEx.1.0.7.0\lib\NetCore45\WriteableBitmapEx.WinRT.dll</HintPath>

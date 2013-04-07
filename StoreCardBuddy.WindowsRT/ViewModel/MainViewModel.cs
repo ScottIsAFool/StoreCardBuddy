@@ -177,15 +177,13 @@ namespace StoreCardBuddy.ViewModel
         public ObservableCollection<Card> Cards { get; set; }
         public Card SelectedCard { get; set; }
         public int SelectedCardIndex { get; set; }
-        public bool CanPinToStart { get; set; }
         public bool IsInSelectionMode { get; set; }
-        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
 
         private void OnSelectedCardIndexChanged()
         {
             SelectedCard.CardProvider = ((CardProviders)Application.Current.Resources["CardProviders"])[SelectedCardIndex];
             CheckBarcode();
-            RaisePropertyChanged("SelectedCard");
+            //RaisePropertyChanged("SelectedCard");
         }
 
         private void CheckBarcode()
@@ -217,7 +215,7 @@ namespace StoreCardBuddy.ViewModel
                                                       SelectedCard = card;
                                                       if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
                                                       SetProviderIndex();
-                                                      //navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
+                                                      navigationService.Navigate<CardDetailsView>();
                                                   });
             }
         }
@@ -232,19 +230,6 @@ namespace StoreCardBuddy.ViewModel
                     SelectedCardIndex = i;
                     break;
                 }
-            }
-        }
-
-        public RelayCommand ManualEntryCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                                            {
-                                                SelectedCard = new Card{Id = Guid.NewGuid().ToString()};
-                                                DetailsPageTitle = "add new card";
-                                                //navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
-                                            });
             }
         }
 

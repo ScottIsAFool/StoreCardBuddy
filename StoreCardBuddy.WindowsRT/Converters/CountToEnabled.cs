@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace StoreCardBuddy.WindowsRT.Converters
+namespace StoreCardBuddy.Converters
 {
     public class CountToEnabled : IValueConverter
     {

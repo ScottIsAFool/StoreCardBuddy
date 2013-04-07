@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:StoreCardBuddy.WindowsRT.ViewModel" xmlns:system="using:System"
-             xmlns:model="using:StoreCardBuddy.Model" xmlns:converters="using:StoreCardBuddy.Converters"
+             xmlns:model="using:StoreCardBuddy.Model" 
+             xmlns:converters="using:StoreCardBuddy.Converters"
              mc:Ignorable="d"
              RequestedTheme="Light">
     <Application.Resources>
@@ -24,6 +25,7 @@
             
             <!-- Converters -->
             <converters:BarcodeToImageConverter x:Key="BarcodeToImageConverter"/>
+            <converters:CountToEnabled x:Key="CountToEnabled"/>
 
             <model:CardProviders x:Key="CardProviders"
                                  x:Name="TheCardProviders" />

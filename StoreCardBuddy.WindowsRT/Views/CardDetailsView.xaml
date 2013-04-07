@@ -58,7 +58,8 @@
                          Width="400"
                          Height="40"
                          VerticalContentAlignment="Center"
-                         HorizontalAlignment="Left"/>
+                         HorizontalAlignment="Left"
+                         InputScope="AlphanumericFullWidth" />
                 <TextBlock Text="Card provider:"
                            Style="{StaticResource TitleTextStyle}"/>
                 <ComboBox ItemsSource="{Binding Source={StaticResource CardProviders}}"
@@ -123,9 +124,9 @@
                          HorizontalAlignment="Left" />
                 <TextBlock Text="Card provider:"
                            Style="{StaticResource TitleTextStyle}" />
-                <ComboBox ItemsSource="{Binding Source={StaticResource CardProviders}}"
+                <ComboBox ItemsSource="{Binding Source={StaticResource CardProviders}}" 
                           HorizontalAlignment="Left"
-                          SelectedItem="{Binding SelectedCard.CardProvider, Mode=TwoWay}"
+                          SelectedIndex="{Binding SelectedCardIndex, Mode=TwoWay}"
                           Height="40"
                           Width="300"
                           Margin="0,6">
