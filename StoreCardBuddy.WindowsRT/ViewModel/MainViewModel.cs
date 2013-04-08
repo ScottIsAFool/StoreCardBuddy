@@ -245,6 +245,7 @@ namespace StoreCardBuddy.ViewModel
                                                       if (result == MessageBoxResult.Yes)
                                                       {
                                                           Cards.Remove(card);
+                                                          navigationService.Navigate<MainView>();
                                                       }
                                                   });
             }
