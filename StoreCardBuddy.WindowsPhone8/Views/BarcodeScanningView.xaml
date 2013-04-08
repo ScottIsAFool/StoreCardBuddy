@@ -83,7 +83,7 @@
                 <Border Grid.Row="0"
                         Background="#64000000"
                         VerticalAlignment="Top">
-                    <TextBlock Text="Please make sure that you hold your phone about 3&quot; (8cm) away from the card's barcode. If the barcode is scratched, please try entering it in manually."
+                    <TextBlock Text="Please make sure that you hold your phone about 3&quot; (8cm) away from the card's barcode, gently press the camera button to focus on the barcode. If the barcode is scratched, please try entering it in manually."
                                TextWrapping="Wrap"
                                Style="{StaticResource PhoneTextNormalStyle}"
                                TextAlignment="Center"

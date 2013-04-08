@@ -1,5 +1,5 @@
 ﻿<common:LayoutAwarePage x:Name="pageRoot"
-                        x:Class="StoreCardBuddy.WindowsRT.Views.MainView"
+                        x:Class="StoreCardBuddy.Views.MainView"
                         DataContext="{Binding Main, Source={StaticResource Locator}}"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

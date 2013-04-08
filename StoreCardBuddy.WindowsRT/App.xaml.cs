@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
+using Newtonsoft.Json;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.ViewModel;
+using StoreCardBuddy.Views;
 using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
 using WinRtUtility;
@@ -78,11 +82,14 @@ namespace StoreCardBuddy.WindowsRT
 
         private async Task GetCards()
         {
-            //var loader = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
+            var loader = new ObjectStorageHelper<List<Card>>(StorageType.Roaming);
 
-            //var cards = await loader.LoadAsync("Cards");
+            //await loader.DeleteAsync("Cards");
 
-            //SimpleIoc.Default.GetInstance<MainViewModel>().Cards = cards;
+            var cards = await loader.LoadAsync("Cards");
+
+            if (cards != null)
+                SimpleIoc.Default.GetInstance<MainViewModel>().Cards = new ObservableCollection<Card>(cards);
         }
 
         /// <summary>
@@ -97,9 +104,9 @@ namespace StoreCardBuddy.WindowsRT
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
 
-            var saver = new ObjectStorageHelper<ObservableCollection<Card>>(StorageType.Roaming);
+            var saver = new ObjectStorageHelper<List<Card>>(StorageType.Roaming);
 
-            await saver.SaveAsync(SimpleIoc.Default.GetInstance<MainViewModel>().Cards, "Cards");
+            await saver.SaveAsync(SimpleIoc.Default.GetInstance<MainViewModel>().Cards.ToList(), "Cards");
 
             deferral.Complete();
         }

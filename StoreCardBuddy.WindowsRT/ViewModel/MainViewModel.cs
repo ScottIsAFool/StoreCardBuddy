@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using ReflectionIT.Windows8.Helpers;
 using StoreCardBuddy.Model;
+using StoreCardBuddy.Views;
 using StoreCardBuddy.WindowsRT;
 using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
@@ -60,7 +61,7 @@ namespace StoreCardBuddy.ViewModel
             SelectedCards = new ObservableCollection<Card>();
             if (IsInDesignMode)
             {
-                DetailsPageTitle = "add new card";
+                IsInEditMode = true;
                 Cards = new ObservableCollection<Card>
                             {
                                 new Card
@@ -97,7 +98,8 @@ namespace StoreCardBuddy.ViewModel
                     SelectedCard = new Card
                                        {
                                            Id = Guid.NewGuid().ToString(),
-                                           OriginalBarcodeFormat = result.BarcodeFormat
+                                           OriginalBarcodeFormat = result.BarcodeFormat,
+                                           CardProvider = ((CardProviders)Application.Current.Resources["CardProviders"])[1]
                                        };
 
                     if (result.BarcodeFormat == BarcodeFormat.CODE_128
@@ -146,7 +148,7 @@ namespace StoreCardBuddy.ViewModel
                     }
 
                     // Navigate to the card editing page
-                    DetailsPageTitle = "add new card";
+                    IsInEditMode = false;
                     navigationService.Navigate<CardDetailsView>();
                 }
                 if (m.Notification.Equals("PinnedBarcodeFound"))
@@ -174,11 +176,12 @@ namespace StoreCardBuddy.ViewModel
                                                                                                         });
         }
 
+        public string DetailsPageTitle { get { return IsInEditMode ? "edit card details" : "add new card"; } }
         public ObservableCollection<Card> SelectedCards { get; set; }
         public ObservableCollection<Card> Cards { get; set; }
         public Card SelectedCard { get; set; }
         public int SelectedCardIndex { get; set; }
-        public bool IsInSelectionMode { get; set; }
+        public bool IsInEditMode { get; set; }
 
         private void OnSelectedCardIndexChanged()
         {
@@ -194,8 +197,6 @@ namespace StoreCardBuddy.ViewModel
                 SelectedCard.CardProvider.BarcodeFormat = SelectedCard.OriginalBarcodeFormat;
             }
         }
-        
-        public string DetailsPageTitle { get; set; }
 
         public RelayCommand AddNewBarcodeCommand
         {
@@ -211,7 +212,7 @@ namespace StoreCardBuddy.ViewModel
             {
                 return new RelayCommand<Card>(card =>
                                                   {
-                                                      DetailsPageTitle = "edit card details";
+                                                      IsInEditMode = true;
                                                       tempCard = card;
                                                       SelectedCard = card;
                                                       if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
@@ -238,13 +239,13 @@ namespace StoreCardBuddy.ViewModel
         {
             get
             {
-                return new RelayCommand<Card>(card =>
+                return new RelayCommand<Card>(async card =>
                                                   {
-                                                      //var result = MessageBox.Show("Are you sure you wish to delete this card? This action cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
-                                                      //if (result == MessageBoxResult.OK)
-                                                      //{
-                                                      //    Cards.Remove(card);
-                                                      //}
+                                                      var result = await MessageBox.ShowAsync("Are you sure you wish to delete this card? This action cannot be undone.", "Are you sure?", MessageBoxButton.YesNo);
+                                                      if (result == MessageBoxResult.Yes)
+                                                      {
+                                                          Cards.Remove(card);
+                                                      }
                                                   });
             }
         }
@@ -292,7 +293,6 @@ namespace StoreCardBuddy.ViewModel
                 return new RelayCommand(async () =>
                                                   {
                                                       var result = await MessageBox.ShowAsync("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.YesNo);
-                                                      //var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
                                                       if (result == MessageBoxResult.Yes)
                                                       {
                                                           var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
@@ -309,12 +309,6 @@ namespace StoreCardBuddy.ViewModel
             {
                 return new RelayCommand(() =>
                                             {
-                                                if (string.IsNullOrEmpty(SelectedCard.DisplayBarcode))
-                                                {
-                                                    //MessageBox.Show("No barcode was entered, you really need one.", "Sorry, no barcode", MessageBoxButton.OK);
-                                                    return;
-                                                }
-
                                                 CheckBarcode();
                                                 if (DetailsPageTitle != "edit card details")
                                                 {
@@ -337,7 +331,7 @@ namespace StoreCardBuddy.ViewModel
                 return new RelayCommand(() =>
                                             {
                                                 navigationService.Navigate<MainView>();
-                                                SelectedCard = null;
+                                                SelectedCard = tempCard;
                                             });
             }
         }

@@ -1,13 +1,20 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using ZXing;
 
 namespace StoreCardBuddy.Model
 {
     public class CardProvider : INotifyPropertyChanged
     {
+        public CardProvider()
+        {
+            
+        }
+
         public string ProviderName { get; set; }
         public BarcodeFormat BarcodeFormat { get; set; }
         public string ImageUrl { get; set; }
+        [IgnoreDataMember]
         public string TileUrl
         {
             get
@@ -16,6 +23,7 @@ namespace StoreCardBuddy.Model
                 return tileName;
             }
         }
+        [IgnoreDataMember]
         public string SquareUrl
         {
             get

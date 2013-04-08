@@ -7,7 +7,7 @@ using StoreCardBuddy.WindowsRT.Model;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace StoreCardBuddy.WindowsRT.Views
+namespace StoreCardBuddy.Views
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
