@@ -9,7 +9,6 @@ using ReflectionIT.Windows8.Helpers;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.Views;
 using StoreCardBuddy.WindowsRT;
-using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

@@ -35,6 +35,12 @@
                             HorizontalAlignment="Left">
                     <Button Style="{StaticResource AddAppBarButtonStyle}"
                             Command="{Binding AddNewBarcodeCommand}" />
+                    <Button Style="{StaticResource AppBarSkydriveUploadStyle}"
+                            IsEnabled="{Binding Backup.IsLoggedIn, Source={StaticResource Locator}}"
+                            Command="{Binding Backup.BackupCardsCommand, Source={StaticResource Locator}}"/>
+                    <Button Style="{StaticResource AppBarSkydriveDownloadStyle}"
+                            IsEnabled="{Binding Backup.IsLoggedIn, Source={StaticResource Locator}}"
+                            Command="{Binding Backup.RestoreCardsCommand, Source={StaticResource Locator}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"

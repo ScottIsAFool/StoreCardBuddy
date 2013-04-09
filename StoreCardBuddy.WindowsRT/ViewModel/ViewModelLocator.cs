@@ -15,11 +15,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using StoreCardBuddy.ViewModel;
-using StoreCardBuddy.WindowsRT.Model;
+using StoreCardBuddy.Model;
 using Windows.UI.Xaml.Controls;
 
-namespace StoreCardBuddy.WindowsRT.ViewModel
+namespace StoreCardBuddy.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -47,6 +46,7 @@ namespace StoreCardBuddy.WindowsRT.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<BackupRestoreViewModel>();
         }
 
         public MainViewModel Main
@@ -55,6 +55,11 @@ namespace StoreCardBuddy.WindowsRT.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
+        }
+
+        public BackupRestoreViewModel Backup
+        {
+            get { return ServiceLocator.Current.GetInstance<BackupRestoreViewModel>(); }
         }
         
         public static void Cleanup()

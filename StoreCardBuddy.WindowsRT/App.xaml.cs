@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Callisto.Controls.SettingsManagement;
 using GalaSoft.MvvmLight.Ioc;
 using Newtonsoft.Json;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.ViewModel;
 using StoreCardBuddy.Views;
-using StoreCardBuddy.WindowsRT.Model;
 using StoreCardBuddy.WindowsRT.Views;
 using WinRtUtility;
 using Windows.ApplicationModel;
@@ -78,6 +78,8 @@ namespace StoreCardBuddy.WindowsRT
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
+            AppSettings.Current.AddCommand<AccountSettingsView>("Account");
         }
 
         private async Task GetCards()

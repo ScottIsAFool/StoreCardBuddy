@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Windows.Networking.Connectivity;
 using Windows.UI.Xaml.Controls;
 
-namespace StoreCardBuddy.WindowsRT.Model
+namespace StoreCardBuddy.Model
 {
     public class NavigationService
     {

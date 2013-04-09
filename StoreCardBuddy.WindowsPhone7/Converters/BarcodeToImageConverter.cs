@@ -27,8 +27,6 @@ namespace StoreCardBuddy.Converters
                     var barcode = (Card) value;
                     if (string.IsNullOrEmpty(barcode.OriginalBarcode)) return null;
 
-                    //if (barcode.CardProvider.BarcodeFormat == BarcodeFormat.DATA_MATRIX) return DataMatrixImage(barcode);
-
                     var writer = new BarcodeWriter
                                      {
                                          Format = barcode.CardProvider.BarcodeFormat,

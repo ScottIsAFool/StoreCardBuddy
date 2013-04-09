@@ -3,7 +3,6 @@
 using GalaSoft.MvvmLight.Ioc;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.ViewModel;
-using StoreCardBuddy.WindowsRT.Model;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
