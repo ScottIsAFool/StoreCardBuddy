@@ -69,7 +69,7 @@ namespace StoreCardBuddy.ViewModel
                                                                       {
                                                                           if (m.Notification.Equals("AccountViewLoaded") || m.Notification.Equals("AppLoaded"))
                                                                           {
-                                                                              _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesString(_scopes).Split(new[] { ' ' }));
+                                                                              _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
 
                                                                               IsLoggedIn = _liveLoginResult.Status == LiveConnectSessionStatus.Connected;
 
@@ -104,7 +104,7 @@ namespace StoreCardBuddy.ViewModel
                                             {
                                                 if (!IsLoggedIn)
                                                 {
-                                                    _liveLoginResult = await _authClient.LoginAsync(LiveSDKClientHelper.GetScopesString(_scopes).Split(new[] { ' ' }));
+                                                    _liveLoginResult = await _authClient.LoginAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
                                                 }
                                                 else
                                                 {
