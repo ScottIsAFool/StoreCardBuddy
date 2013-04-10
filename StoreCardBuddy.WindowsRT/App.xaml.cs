@@ -5,26 +5,37 @@ using System.Linq;
 using System.Threading.Tasks;
 using Callisto.Controls.SettingsManagement;
 using GalaSoft.MvvmLight.Ioc;
-using Newtonsoft.Json;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.ViewModel;
 using StoreCardBuddy.Views;
-using StoreCardBuddy.WindowsRT.Views;
 using WinRtUtility;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
-namespace StoreCardBuddy.WindowsRT
+namespace StoreCardBuddy
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
     {
+        public static void ShowMessage(string message)
+        {
+            var notification = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+            var textElement = notification.GetElementsByTagName("text");
+            
+            textElement[0].AppendChild(notification.CreateTextNode(message));
+            
+            var toast = new ToastNotification(notification);
+            
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

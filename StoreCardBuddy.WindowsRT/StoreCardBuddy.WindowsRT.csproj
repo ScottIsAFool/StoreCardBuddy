@@ -124,7 +124,9 @@
     <Compile Include="Common\MessageBoxHelper.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Controls\ExtendedProgressBar.cs" />
     <Compile Include="Converters\CountToEnabled.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Model\NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BackupRestoreViewModel.cs" />
@@ -255,6 +257,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

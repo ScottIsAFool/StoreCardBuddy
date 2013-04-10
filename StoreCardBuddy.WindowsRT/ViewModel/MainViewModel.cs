@@ -150,19 +150,10 @@ namespace StoreCardBuddy.ViewModel
                     IsInEditMode = false;
                     navigationService.Navigate<CardDetailsView>();
                 }
-                if (m.Notification.Equals("PinnedBarcodeFound"))
-                {
-                    var id = (string)m.Sender;
-                    var card = Cards.FirstOrDefault(x => x.Id == id);
-                    if (card != default(Card))
-                    {
-                        SelectedCard = card;
-                    }
-                }
                 if (m.Notification.Equals("RestoreCards"))
                 {
                     Cards = (ObservableCollection<Card>) m.Sender;
-                    //App.ShowMessage("Cards restored");
+                    App.ShowMessage("Cards restored");
                 }
             });
 
