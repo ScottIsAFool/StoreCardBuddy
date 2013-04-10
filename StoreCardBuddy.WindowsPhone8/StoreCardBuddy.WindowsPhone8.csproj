@@ -251,10 +251,6 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\SkyDriveAccess.txt">
       <Link>SkyDriveAccess.txt</Link>
     </Content>
-    <Content Include="Content\About\AboutStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Icons\appbar.save.rest.png" />
     <Content Include="Icons\appbar.wallet.remove.rest.png" />
     <Content Include="Icons\appbar.wallet.rest.png" />
@@ -324,9 +320,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveSDKHelper, Version=0.1.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.1\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.2\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
@@ -341,15 +337,17 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\SL40-WP\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\SL40-WP\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone">
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.13.0\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.14.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.14.2\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\System.Windows.Interactivity.dll</HintPath>
@@ -357,15 +355,20 @@
     <Reference Include="WriteableBitmapExWinPhone">
       <HintPath>..\packages\WriteableBitmapEx.1.0.7.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
     </Reference>
-    <Reference Include="YourLastAboutDialog">
-      <HintPath>..\packages\YLAD.2.0.0\lib\sl40-wp71\YourLastAboutDialog.dll</HintPath>
+    <Reference Include="YourLastAboutDialog, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\YLAD.2.1.0\lib\windowsphone8\YourLastAboutDialog.dll</HintPath>
     </Reference>
     <Reference Include="zxing.wp8.0, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ZXing.Net.0.11.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
+      <HintPath>..\packages\ZXing.Net.0.11.0.1\lib\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About\AboutStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Page Include="Views\BackupRestoreView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

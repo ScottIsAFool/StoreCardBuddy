@@ -291,9 +291,9 @@
     <Reference Include="GalaSoft.MvvmLight.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveSDKHelper, Version=0.1.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.1\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.2\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\WindowsXAML\Microsoft.Live.dll</HintPath>
@@ -301,11 +301,12 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.36.1.0\lib\WinRT45\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\WinRT45\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WinRtUtility">
