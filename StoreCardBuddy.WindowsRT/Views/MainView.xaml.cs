@@ -1,6 +1,7 @@
 ﻿// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using StoreCardBuddy.Model;
 using StoreCardBuddy.ViewModel;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +17,7 @@ namespace StoreCardBuddy.Views
         public MainView()
         {
             this.InitializeComponent();
+            Loaded += (sender, args) => Messenger.Default.Send(new NotificationMessage("AppLoaded"));
         }
 
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)

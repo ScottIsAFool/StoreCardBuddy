@@ -14,7 +14,7 @@ using Microsoft.Live;
 using Newtonsoft.Json;
 using ReflectionIT.Windows8.Helpers;
 using StoreCardBuddy.Model;
-using StoreCardBuddy.WindowsRT;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 
@@ -59,6 +59,7 @@ namespace StoreCardBuddy.ViewModel
             {
                 LoggedInAs = "Not logged in";
                 WireMessages();
+                ProgressVisibility = Visibility.Collapsed;
             }
         }
 
@@ -66,7 +67,7 @@ namespace StoreCardBuddy.ViewModel
         {
             Messenger.Default.Register<NotificationMessage>(this, async m =>
                                                                       {
-                                                                          if (m.Notification.Equals("AccountViewLoaded"))
+                                                                          if (m.Notification.Equals("AccountViewLoaded") || m.Notification.Equals("AppLoaded"))
                                                                           {
                                                                               _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesString(_scopes).Split(new[] { ' ' }));
 
@@ -162,44 +163,51 @@ namespace StoreCardBuddy.ViewModel
 
         private async void ProcessFiles(string result)
         {
-            var folder = JsonConvert.DeserializeObject<FolderDetails>(result);
-
-            if (folder.Items == null || !folder.Items.Any())
+            try
             {
-                //App.ShowMessage("No backup could be found");
-                ProgressText = string.Empty;
-                ProgressVisibility = Visibility.Collapsed;
-                return;
-            }
+                var folder = await JsonConvert.DeserializeObjectAsync<FolderDetails>(result);
 
-            var fileId = folder.Items
-                               .Where(item => item.Name == StoreCardBuddyFile)
-                               .Select(x => x.Id)
-                               .SingleOrDefault();
-
-            if (!string.IsNullOrEmpty(fileId))
-            {
-                if (!_navigationService.IsNetworkAvailable) return;
-
-                try
+                if (folder.Items == null || !folder.Items.Any())
                 {
-                    var file = await _client.BackgroundDownloadAsync(SkyDriveHelper.GetFile(fileId));
-                    await ParseFileContent(await file.GetRandomAccessStreamAsync());
+                    //App.ShowMessage("No backup could be found");
+                    ProgressText = string.Empty;
+                    ProgressVisibility = Visibility.Collapsed;
+                    return;
                 }
-                catch
+
+                var fileId = folder.Items
+                                   .Where(item => item.Name == StoreCardBuddyFile)
+                                   .Select(x => x.Id)
+                                   .SingleOrDefault();
+
+                if (!string.IsNullOrEmpty(fileId))
                 {
-                    MessageBox.ShowAsync("There was an error getting the file");
+                    if (!_navigationService.IsNetworkAvailable) return;
+
+                    try
+                    {
+                        var file = await _client.BackgroundDownloadAsync(SkyDriveHelper.GetFile(fileId));
+                        await ParseFileContent(await file.GetRandomAccessStreamAsync());
+                    }
+                    catch
+                    {
+                        MessageBox.ShowAsync("There was an error getting the file");
+                    }
+                }
+                else
+                {
+                    App.ShowMessage("No backup could be found");
+                    ProgressText = string.Empty;
+                    ProgressVisibility = Visibility.Collapsed;
                 }
             }
-            else
+            catch
             {
-                App.ShowMessage("No backup could be found");
-                ProgressText = string.Empty;
-                ProgressVisibility = Visibility.Collapsed;
+                var s = "";
             }
         }
 
-        private static async Task ParseFileContent(IInputStream inputStream)
+        private async Task ParseFileContent(IInputStream inputStream)
         {
             using (var reader = new StreamReader(inputStream.AsStreamForRead()))
             {
@@ -209,6 +217,9 @@ namespace StoreCardBuddy.ViewModel
                 var cards = JsonConvert.DeserializeObject<ObservableCollection<Card>>(cardString);
 
                 Messenger.Default.Send(new NotificationMessage(cards, "RestoreCards"));
+
+                ProgressText = string.Empty;
+                ProgressVisibility = Visibility.Collapsed;
             }
         }
 
@@ -257,14 +268,18 @@ namespace StoreCardBuddy.ViewModel
             var bytes = Encoding.UTF8.GetBytes(cardString);
             var encodedString = Convert.ToBase64String(bytes);
 
+            var tmpFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("tmp.txt", CreationCollisionOption.ReplaceExisting);
+
+            using (var writer = new StreamWriter(await tmpFile.OpenStreamForWriteAsync()))
+            {
+                await writer.WriteAsync(encodedString);
+            }
+
             try
             {
-                using (var stream = encodedString.ToStream())
-                {
-                    var result = await _client.BackgroundUploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, stream.AsInputStream(), OverwriteOption.Overwrite);
+                var result = await _client.BackgroundUploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, tmpFile, OverwriteOption.Overwrite);
 
-                    App.ShowMessage("Backup completed successfully.");
-                }
+                App.ShowMessage("Backup completed successfully.");
             }
             catch (Exception ex)
             {

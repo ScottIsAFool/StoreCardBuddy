@@ -7,6 +7,7 @@
                         xmlns:common="using:StoreCardBuddy.WindowsRT.Common"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:controls="using:ScottIsAFool.Windows8.Controls"
                         mc:Ignorable="d">
 
     <Page.Resources>
@@ -65,6 +66,11 @@
                 <RowDefinition Height="140" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <controls:ExtendedProgressBar HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Top"
+                                          Text="{Binding Backup.ProgressText, Source={StaticResource Locator}}"
+                                          Visibility="{Binding Backup.ProgressVisibility, Source={StaticResource Locator}}"
+                                          IsIndeterminate="True"/>
 
             <!-- Back button and page title -->
             <Grid>
