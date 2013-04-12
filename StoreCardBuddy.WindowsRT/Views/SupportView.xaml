@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="StoreCardBuddy.Views.SupportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Version" 
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       Style="{StaticResource BasicTextStyle}" />
+            <TextBlock x:Name="VersionText"
+                       Foreground="Black"
+                       Style="{StaticResource BasicTextStyle}" />
+            <TextBlock Text="Feedback"
+                       FontWeight="Bold"
+                       Foreground="Black"
+                       Style="{StaticResource BasicTextStyle}"
+                       Margin="0,10,0,0" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Web:"
+                           Foreground="Black"
+                           Style="{StaticResource BasicTextStyle}"
+                           VerticalAlignment="Center"/>
+                <HyperlinkButton Content="dev.scottisafool.co.uk"
+                                 NavigateUri="http://dev.scottisafool.co.uk"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Top"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Support:"
+                           Foreground="Black"
+                           Style="{StaticResource BasicTextStyle}"
+                           VerticalAlignment="Center" />
+                <HyperlinkButton Content="scottisafool@live.co.uk"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Top"
+                                 Command="{Binding Main.LaunchEmailCommand, Source={StaticResource Locator}}"
+                                 CommandParameter="scottisafool@live.co.uk?subject=Feedback from Store Card Buddy for Windows 8"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Twitter:"
+                           Foreground="Black"
+                           Style="{StaticResource BasicTextStyle}"
+                           VerticalAlignment="Center" />
+                <HyperlinkButton Content="@scottisafool"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Top"
+                                 NavigateUri="http://twitter.com/scottisafool"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

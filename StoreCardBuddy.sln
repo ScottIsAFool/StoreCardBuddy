@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreCardBuddy.WindowsPhone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreCardBuddy.WindowsRT", "StoreCardBuddy.WindowsRT\StoreCardBuddy.WindowsRT.csproj", "{8854D413-E513-47EC-A206-00140EDCD881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSDKHelper", "..\..\LiveSDKHelper\LiveSDKHelper\LiveSDKHelper.csproj", "{5093B1BE-55B4-4639-9DBF-D7264A9B8324}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,16 +75,6 @@ Global
 		{8854D413-E513-47EC-A206-00140EDCD881}.Release|x86.ActiveCfg = Release|x86
 		{8854D413-E513-47EC-A206-00140EDCD881}.Release|x86.Build.0 = Release|x86
 		{8854D413-E513-47EC-A206-00140EDCD881}.Release|x86.Deploy.0 = Release|x86
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Release|ARM.ActiveCfg = Release|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Release|x64.ActiveCfg = Release|Any CPU
-		{5093B1BE-55B4-4639-9DBF-D7264A9B8324}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

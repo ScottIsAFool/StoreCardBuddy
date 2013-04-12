@@ -42,7 +42,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;WP8</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -302,8 +302,9 @@
     <Content Include="Icons\appbar.delete.rest.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.2.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -320,9 +321,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveSDKHelper, Version=0.1.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.2\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.4\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>

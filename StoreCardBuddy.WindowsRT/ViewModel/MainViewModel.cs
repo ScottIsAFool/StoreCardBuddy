@@ -10,6 +10,7 @@ using StoreCardBuddy.Model;
 using StoreCardBuddy.Views;
 using StoreCardBuddy.WindowsRT;
 using StoreCardBuddy.WindowsRT.Views;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ZXing;
@@ -187,6 +188,14 @@ namespace StoreCardBuddy.ViewModel
                 SelectedCard.CardProvider.BarcodeFormat = SelectedCard.OriginalBarcodeFormat;
             }
         }
+
+        public RelayCommand<string> LaunchEmailCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(email => Launcher.LaunchUriAsync(new Uri(string.Format("mailto:{0}", email))));
+            }
+        } 
 
         public RelayCommand AddNewBarcodeCommand
         {

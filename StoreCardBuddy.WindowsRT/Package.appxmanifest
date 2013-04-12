@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="43233ScottLovegrove.StoreCardBuddy" Publisher="CN=43EE5435-230A-4364-8907-04B5F073D610" Version="1.0.0.0" />
+  <Identity Name="43233ScottLovegrove.StoreCardBuddy" Publisher="CN=43EE5435-230A-4364-8907-04B5F073D610" Version="1.0.0.1" />
   <Properties>
     <DisplayName>Store Card Buddy</DisplayName>
     <PublisherDisplayName>ScottLovegrove</PublisherDisplayName>
@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="StoreCardBuddy.WindowsRT.App">
-      <VisualElements DisplayName="Store Card Buddy" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="StoreCardBuddy.WindowsRT" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="Store Card Buddy" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="StoreCardBuddy.WindowsRT" ForegroundText="light" BackgroundColor="#FF7700" ToastCapable="true">
+        <DefaultTile ShowName="allLogos" ShortName="Store Card Buddy" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FF7700" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
           <Rotation Preference="landscapeFlipped" />

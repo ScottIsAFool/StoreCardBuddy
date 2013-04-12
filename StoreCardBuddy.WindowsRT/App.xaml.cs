@@ -91,6 +91,8 @@ namespace StoreCardBuddy
             Window.Current.Activate();
 
             AppSettings.Current.AddCommand<AccountSettingsView>("Account");
+            AppSettings.Current.AddCommand<SupportView>("Support");
+            AppSettings.Current.AddCommand<PrivacyView>("Privacy");
         }
 
         private async Task GetCards()

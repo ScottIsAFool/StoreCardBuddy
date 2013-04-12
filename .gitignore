@@ -3,6 +3,8 @@
 #################
 !Tools/Fody/*
 
+AppPackages/
+
 #################
 ## Project specific
 #################

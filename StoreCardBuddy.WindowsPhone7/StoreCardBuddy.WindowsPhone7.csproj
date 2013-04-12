@@ -59,8 +59,9 @@
     <Content Include="Images\WoolworthsAUSquare.png" />
     <Content Include="Images\WoolworthsAUTile.png" />
     <Content Include="SkyDriveAccess.txt" />
-    <Reference Include="Cimbalino.Phone.Toolkit">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.1\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.2.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -77,9 +78,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveSDKHelper, Version=0.1.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.2\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.4\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone71\Microsoft.Live.dll</HintPath>

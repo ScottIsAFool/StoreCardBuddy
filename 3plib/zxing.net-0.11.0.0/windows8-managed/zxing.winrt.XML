@@ -1820,7 +1820,7 @@
             <author>www.Redivivus.in (suraj.supekar@redivivus.in) - Ported from ZXING Java Source 
             </author>
         </member>
-        <!-- Ungültiger XML-Kommentar wurde für den Member "T:ZXing.Client.Result.VCardResultParser" ignoriert -->
+        <!-- Badly formed XML comment ignored for member "T:ZXing.Client.Result.VCardResultParser" -->
         <member name="M:ZXing.Client.Result.VCardResultParser.formatNames(System.Collections.Generic.IEnumerable{System.Collections.Generic.List{System.String}})">
              Formats name fields of the form "Public;John;Q.;Reverend;III" into a form like
              "Reverend John Q. Public III".
@@ -2749,7 +2749,7 @@
             <author>bbrown@google.com (Brian Brown)</author>
             </summary>
         </member>
-        <!-- Ungültiger XML-Kommentar wurde für den Member "M:ZXing.Datamatrix.Internal.BitMatrixParser.#ctor(ZXing.Common.BitMatrix)" ignoriert -->
+        <!-- Badly formed XML comment ignored for member "M:ZXing.Datamatrix.Internal.BitMatrixParser.#ctor(ZXing.Common.BitMatrix)" -->
         <member name="M:ZXing.Datamatrix.Internal.BitMatrixParser.readVersion(ZXing.Common.BitMatrix)">
              <summary>
              <p>Creates the version object based on the dimension of the original bit matrix from 
@@ -3923,8 +3923,8 @@
             <param name="hints">The hints.</param>
             <returns></returns>
         </member>
-        <!-- Ungültiger XML-Kommentar wurde für den Member "T:ZXing.Multi.QrCode.Internal.MultiFinderPatternFinder" ignoriert -->
-        <!-- Ungültiger XML-Kommentar wurde für den Member "T:ZXing.QrCode.Internal.FinderPatternFinder" ignoriert -->
+        <!-- Badly formed XML comment ignored for member "T:ZXing.Multi.QrCode.Internal.MultiFinderPatternFinder" -->
+        <!-- Badly formed XML comment ignored for member "T:ZXing.QrCode.Internal.FinderPatternFinder" -->
         <member name="F:ZXing.QrCode.Internal.FinderPatternFinder.MIN_SKIP">
             <summary>
             1 pixel/module times 3 modules/center
@@ -5542,7 +5542,7 @@
             @see UPCEANExtension5Support
             </summary>
         </member>
-        <!-- Ungültiger XML-Kommentar wurde für den Member "M:ZXing.OneD.UPCEANExtension2Support.parseExtensionString(System.String)" ignoriert -->
+        <!-- Badly formed XML comment ignored for member "M:ZXing.OneD.UPCEANExtension2Support.parseExtensionString(System.String)" -->
         <member name="T:ZXing.OneD.UPCEANExtension5Support">
             @see UPCEANExtension2Support
         </member>
@@ -7356,30 +7356,6 @@
         <member name="P:ZXing.QrCode.Internal.FinderPatternInfo.TopRight">
             <summary>
             Gets the top right.
-            </summary>
-        </member>
-        <member name="T:ZXing.QrCode.Internal.QRCodeDetectorResult">
-            <summary>
-            The class contains all information about the QRCode which was found
-            </summary>
-        </member>
-        <member name="M:ZXing.QrCode.Internal.QRCodeDetectorResult.#ctor(ZXing.Common.BitMatrix,ZXing.ResultPoint[],System.Single,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ZXing.QrCode.Internal.QRCodeDetectorResult"/> class.
-            </summary>
-            <param name="bits"></param>
-            <param name="points"></param>
-            <param name="moduleSize"></param>
-            <param name="dimension"></param>
-        </member>
-        <member name="P:ZXing.QrCode.Internal.QRCodeDetectorResult.ModuleSize">
-            <summary>
-            ModuleSize
-            </summary>
-        </member>
-        <member name="P:ZXing.QrCode.Internal.QRCodeDetectorResult.Dimension">
-            <summary>
-            Dimension
             </summary>
         </member>
         <member name="T:ZXing.QrCode.Internal.ByteMatrix">

@@ -1,0 +1,3 @@
+Store Card Buddy Privacy Policy:
+
+This app accesses the internet in order to backup and restore cards to your app, that is it. No information is sent out from the app about the user.

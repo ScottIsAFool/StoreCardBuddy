@@ -15,6 +15,7 @@
     <PackageCertificateKeyFile>StoreCardBuddy.WindowsRT_StoreKey.pfx</PackageCertificateKeyFile>
     <FodyPath>..\packages\Fody.1.13.6.1</FodyPath>
     <PackageCertificateThumbprint>40763E99F9E5E0AC0CFCC73170A10E18A78D76F6</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,7 +32,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WIN8</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -141,8 +142,14 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PrivacyView.xaml.cs">
+      <DependentUpon>PrivacyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ScanBarcodeView.xaml.cs">
       <DependentUpon>ScanBarcodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupportView.xaml.cs">
+      <DependentUpon>SupportView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +243,28 @@
     <Content Include="..\StoreCardBuddy.WindowsPhone7\SkyDriveAccess.txt">
       <Link>SkyDriveAccess.txt</Link>
     </Content>
+    <Content Include="Assets\Logo.Scale-100.png" />
+    <Content Include="Assets\Logo.Scale-140.png" />
+    <Content Include="Assets\Logo.Scale-180.png" />
+    <Content Include="Assets\Logo.Scale-80.png" />
+    <Content Include="Assets\SmallLogo.Scale-100.png" />
+    <Content Include="Assets\SmallLogo.Scale-140.png" />
+    <Content Include="Assets\SmallLogo.Scale-180.png" />
+    <Content Include="Assets\SmallLogo.Scale-80.png" />
+    <Content Include="Assets\SmallLogo.Targetsize-16.png" />
+    <Content Include="Assets\SmallLogo.Targetsize-256.png" />
+    <Content Include="Assets\SmallLogo.Targetsize-32.png" />
+    <Content Include="Assets\SmallLogo.Targetsize-48.png" />
+    <Content Include="Assets\SplashScreen.Scale-100.png" />
+    <Content Include="Assets\SplashScreen.Scale-140.png" />
+    <Content Include="Assets\SplashScreen.Scale-180.png" />
+    <Content Include="Assets\StoreLogo.Scale-100.png" />
+    <Content Include="Assets\StoreLogo.Scale-140.png" />
+    <Content Include="Assets\StoreLogo.Scale-180.png" />
+    <Content Include="Assets\WideLogo.Scale-100.png" />
+    <Content Include="Assets\WideLogo.Scale-140.png" />
+    <Content Include="Assets\WideLogo.Scale-180.png" />
+    <Content Include="Assets\WideLogo.Scale-80.png" />
     <Content Include="Common\ReadMe.txt" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Fonts\LiveSymbol.ttf" />
@@ -244,12 +273,6 @@
     <None Include="Fody.targets" />
     <None Include="packages.config" />
     <None Include="StoreCardBuddy.WindowsRT_StoreKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Logo.png" />
-    <Content Include="Assets\SmallLogo.png" />
-    <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -276,20 +299,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PrivacyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ScanBarcodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SupportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Callisto">
-      <HintPath>..\packages\Callisto.1.2.7\lib\winrt45\Callisto.dll</HintPath>
+    <Reference Include="Callisto, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Callisto.1.2.8\lib\winrt45\Callisto.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveSDKHelper, Version=0.1.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.4\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\WindowsXAML\Microsoft.Live.dll</HintPath>
@@ -314,12 +350,6 @@
     <Reference Include="zxing.winrt">
       <HintPath>..\3plib\zxing.net-0.11.0.0\windows8-managed\zxing.winrt.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\LiveSDKHelper\LiveSDKHelper\LiveSDKHelper.csproj">
-      <Project>{5093b1be-55b4-4639-9dbf-d7264a9b8324}</Project>
-      <Name>LiveSDKHelper</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
