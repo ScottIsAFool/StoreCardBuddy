@@ -69,11 +69,18 @@ namespace StoreCardBuddy.ViewModel
                                                                       {
                                                                           if (m.Notification.Equals("AccountViewLoaded") || m.Notification.Equals("AppLoaded"))
                                                                           {
-                                                                              _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
+                                                                              try
+                                                                              {
+                                                                                  if (_navigationService.IsNetworkAvailable)
+                                                                                  {
+                                                                                      _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
 
-                                                                              IsLoggedIn = _liveLoginResult.Status == LiveConnectSessionStatus.Connected;
+                                                                                      IsLoggedIn = _liveLoginResult.Status == LiveConnectSessionStatus.Connected;
 
-                                                                              await GetLoginDetails();
+                                                                                      await GetLoginDetails();
+                                                                                  }
+                                                                              }
+                                                                              catch{}
                                                                           }
 
                                                                           if (m.Notification.Equals("Logout"))
@@ -83,6 +90,10 @@ namespace StoreCardBuddy.ViewModel
                                                                                   _authClient.Logout();
                                                                                   IsLoggedIn = false;
                                                                                   LoggedInAs = "Not logged in";
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                  await MessageBox.ShowAsync("We were unable to sign you out at this time", "Unable to sign out", MessageBoxButton.OK);
                                                                               }
                                                                           }
                                                                       });
@@ -157,7 +168,7 @@ namespace StoreCardBuddy.ViewModel
             ProgressVisibility = Visibility.Visible;
             ProgressText = "Restoring...";
 
-            var result = await _client.GetAsync(MeDetails.TopLevelSkyDriveFolder);
+            var result = await _client.GetAsync(SkyDriveHelper.GetFilesForFolder(MeDetails.TopLevelSkyDriveFolder, new List<FolderFilter>{FolderFilter.File}));
             ProcessFiles(result.RawResult);
         }
 
@@ -169,7 +180,7 @@ namespace StoreCardBuddy.ViewModel
 
                 if (folder.Items == null || !folder.Items.Any())
                 {
-                    //App.ShowMessage("No backup could be found");
+                    App.ShowMessage("No backup could be found");
                     ProgressText = string.Empty;
                     ProgressVisibility = Visibility.Collapsed;
                     return;
@@ -275,9 +286,11 @@ namespace StoreCardBuddy.ViewModel
                 await writer.WriteAsync(encodedString);
             }
 
+            var file = await ApplicationData.Current.LocalFolder.GetFileAsync("tmp.txt");
+
             try
             {
-                var result = await _client.BackgroundUploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, tmpFile, OverwriteOption.Overwrite);
+                var result = await _client.BackgroundUploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, file, OverwriteOption.Overwrite);
 
                 App.ShowMessage("Backup completed successfully.");
             }
@@ -288,5 +301,6 @@ namespace StoreCardBuddy.ViewModel
             ProgressText = string.Empty;
             ProgressVisibility = Visibility.Collapsed;
         }
+
     }
 }

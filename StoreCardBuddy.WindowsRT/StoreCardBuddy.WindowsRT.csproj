@@ -291,10 +291,6 @@
     <Reference Include="GalaSoft.MvvmLight.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.2\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Live">
       <HintPath>..\packages\LiveSDK.5.3\WindowsXAML\Microsoft.Live.dll</HintPath>
     </Reference>
@@ -319,7 +315,12 @@
       <HintPath>..\3plib\zxing.net-0.11.0.0\windows8-managed\zxing.winrt.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\LiveSDKHelper\LiveSDKHelper\LiveSDKHelper.csproj">
+      <Project>{5093b1be-55b4-4639-9dbf-d7264a9b8324}</Project>
+      <Name>LiveSDKHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
