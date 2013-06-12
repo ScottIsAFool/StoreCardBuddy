@@ -265,6 +265,16 @@
     <Content Include="Icons\appbar.save.rest.png" />
     <Content Include="Icons\appbar.wallet.remove.rest.png" />
     <Content Include="Icons\appbar.wallet.rest.png" />
+    <Content Include="Images\DisChemWideTile.png" />
+    <Content Include="Images\EveryoneActiveWideTile.png" />
+    <Content Include="Images\IkeaWideTile.png" />
+    <Content Include="Images\JewelOscoWideTile.png" />
+    <Content Include="Images\NectarCardWideTile.png" />
+    <Content Include="Images\OtherWideTile.png" />
+    <Content Include="Images\PetsAtHomeWideTile.png" />
+    <Content Include="Images\SubwayWideTile.png" />
+    <Content Include="Images\TescoClubcardWideTile.png" />
+    <Content Include="Images\WoolworthsAUWideTile.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.Screen-720p.jpg" />
     <Content Include="SplashScreenImage.Screen-WVGA.jpg" />

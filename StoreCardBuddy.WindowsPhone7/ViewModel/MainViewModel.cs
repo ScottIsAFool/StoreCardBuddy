@@ -319,7 +319,8 @@ namespace StoreCardBuddy.ViewModel
             var shellData = new FlipTileData
             {
                 Title = "",
-                BackgroundImage = new Uri(card.CardProvider.TileUrl, UriKind.Relative)
+                BackgroundImage = new Uri(card.CardProvider.TileUrl, UriKind.Relative),
+                WideBackgroundImage = new Uri(card.CardProvider.WideTileUrl, UriKind.Relative)
             };
             ShellTile.Create(new Uri(tileUrl, UriKind.Relative), shellData, false);
 #else

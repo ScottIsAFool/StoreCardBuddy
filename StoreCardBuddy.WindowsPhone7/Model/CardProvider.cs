@@ -32,6 +32,15 @@ namespace StoreCardBuddy.Model
                 return tileName;
             }
         }
+        [IgnoreDataMember]
+        public string WideTileUrl
+        {
+            get
+            {
+                var tileName = ImageUrl.Replace(".png", "WideTile.png");
+                return tileName;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
