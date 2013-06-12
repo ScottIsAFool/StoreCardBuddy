@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Images\DisChem.png" />
+    <Content Include="Images\DisChemSquare.png" />
+    <Content Include="Images\DisChemTile.png" />
     <Content Include="Images\Ikea.png" />
     <Content Include="Images\IkeaSquare.png" />
     <Content Include="Images\IkeaTile.png" />

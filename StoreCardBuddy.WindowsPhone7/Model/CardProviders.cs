@@ -15,6 +15,7 @@ namespace StoreCardBuddy.Model
             Add(new CardProvider {ProviderName = "Jewel-Osco", BarcodeFormat = BarcodeFormat.UPC_A, ImageUrl = "/Images/JewelOsco.png"});
             Add(new CardProvider {ProviderName = "Subway", BarcodeFormat = BarcodeFormat.DATA_MATRIX, ImageUrl = "/Images/Subway.png"});
             Add(new CardProvider{ProviderName = "Woolworths Everyday Rewards (AU)", BarcodeFormat = BarcodeFormat.EAN_13, ImageUrl = "/Images/WoolworthsAU.png"});
+            Add(new CardProvider{ProviderName = "Dis-Chem", BarcodeFormat= BarcodeFormat.CODE_128, ImageUrl="/Images/DisChem.png"});
             Add(new CardProvider {ProviderName = "Other", ImageUrl = "/Images/Other.png"});
         }
     }

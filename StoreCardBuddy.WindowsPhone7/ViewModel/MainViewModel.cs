@@ -41,18 +41,18 @@ namespace StoreCardBuddy.ViewModel
         private readonly INavigationService navigationService;
 
         private static readonly BarcodeFormat[] SupportedFormats = new[]
-                                                                       {
-                                                                           BarcodeFormat.CODE_128,
-                                                                           BarcodeFormat.CODE_39,
-                                                                           BarcodeFormat.UPC_A,
-                                                                           BarcodeFormat.EAN_8, 
-                                                                           BarcodeFormat.EAN_13, 
-                                                                           BarcodeFormat.ITF,
-                                                                           BarcodeFormat.CODABAR,
-                                                                           BarcodeFormat.QR_CODE,
-                                                                           BarcodeFormat.PDF_417, 
-                                                                           BarcodeFormat.DATA_MATRIX,
-                                                                       };
+        {
+            BarcodeFormat.CODE_128,
+            BarcodeFormat.CODE_39,
+            BarcodeFormat.UPC_A,
+            BarcodeFormat.EAN_8,
+            BarcodeFormat.EAN_13,
+            BarcodeFormat.ITF,
+            BarcodeFormat.CODABAR,
+            BarcodeFormat.QR_CODE,
+            BarcodeFormat.PDF_417,
+            BarcodeFormat.DATA_MATRIX,
+        };
 
         private Result currentCard;
         private Card tempCard;
@@ -69,15 +69,15 @@ namespace StoreCardBuddy.ViewModel
             {
                 DetailsPageTitle = "add new card";
                 Cards = new ObservableCollection<Card>
-                            {
-                                new Card
-                                    {
-                                        OriginalBarcode = "9794024051183961",
-                                        DisplayBarcode = "634004024051183961",
-                                        CardProvider = ((CardProviders) Application.Current.Resources["CardProviders"])[0],
-                                        Name = "My Tesco Clubcard"
-                                    }
-                            };
+                {
+                    new Card
+                    {
+                        OriginalBarcode = "9794024051183961",
+                        DisplayBarcode = "634004024051183961",
+                        CardProvider = ((CardProviders) Application.Current.Resources["CardProviders"])[0],
+                        Name = "My Tesco Clubcard"
+                    }
+                };
                 SelectedCard = Cards[0];
             }
             else
@@ -92,7 +92,7 @@ namespace StoreCardBuddy.ViewModel
             {
                 if (m.Notification.Equals("ResultFoundMsg"))
                 {
-                    var result = (Result)m.Sender;
+                    var result = (Result) m.Sender;
                     if (!SupportedFormats.Contains(result.BarcodeFormat))
                     {
                         // Show error message about unsupported barcode
@@ -102,10 +102,10 @@ namespace StoreCardBuddy.ViewModel
                     }
 
                     SelectedCard = new Card
-                                       {
-                                           Id = Guid.NewGuid().ToString(),
-                                           OriginalBarcodeFormat = result.BarcodeFormat
-                                       };
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        OriginalBarcodeFormat = result.BarcodeFormat
+                    };
 
                     if (result.BarcodeFormat == BarcodeFormat.CODE_128
                         && result.Text.StartsWith("9794")
@@ -123,9 +123,9 @@ namespace StoreCardBuddy.ViewModel
                     {
                         var needsStartingA = false;
                         var needsClosingA = false;
-                        if (!result.Text.ToLower().StartsWith("a") && 
-                            !result.Text.ToLower().StartsWith("b") && 
-                            !result.Text.ToLower().StartsWith("c") && 
+                        if (!result.Text.ToLower().StartsWith("a") &&
+                            !result.Text.ToLower().StartsWith("b") &&
+                            !result.Text.ToLower().StartsWith("c") &&
                             !result.Text.ToLower().StartsWith("d"))
                         {
                             needsStartingA = true;
@@ -158,7 +158,7 @@ namespace StoreCardBuddy.ViewModel
                 }
                 if (m.Notification.Equals("PinnedBarcodeFound"))
                 {
-                    var id = (string)m.Sender;
+                    var id = (string) m.Sender;
                     var card = Cards.FirstOrDefault(x => x.Id == id);
                     if (card != default(Card))
                     {
@@ -173,12 +173,12 @@ namespace StoreCardBuddy.ViewModel
             });
 
             Messenger.Default.Register<NotificationMessageAction<ObservableCollection<Card>>>(this, m =>
-                                                                                                        {
-                                                                                                            if (m.Notification.Equals("ShowMeTheCards"))
-                                                                                                            {
-                                                                                                                m.Execute(Cards);
-                                                                                                            }
-                                                                                                        });
+            {
+                if (m.Notification.Equals("ShowMeTheCards"))
+                {
+                    m.Execute(Cards);
+                }
+            });
         }
 
         public ObservableCollection<Card> SelectedCards { get; set; }
@@ -187,11 +187,15 @@ namespace StoreCardBuddy.ViewModel
         public int SelectedCardIndex { get; set; }
         public bool CanPinToStart { get; set; }
         public bool IsInSelectionMode { get; set; }
-        public int SelectedAppBarIndex { get { return IsInSelectionMode ? 1 : 0; } }
+
+        public int SelectedAppBarIndex
+        {
+            get { return IsInSelectionMode ? 1 : 0; }
+        }
 
         private void OnSelectedCardIndexChanged()
         {
-            SelectedCard.CardProvider = ((CardProviders)Application.Current.Resources["CardProviders"])[SelectedCardIndex];
+            SelectedCard.CardProvider = ((CardProviders) Application.Current.Resources["CardProviders"])[SelectedCardIndex];
             CheckBarcode();
             RaisePropertyChanged("SelectedCard");
         }
@@ -203,15 +207,12 @@ namespace StoreCardBuddy.ViewModel
                 SelectedCard.CardProvider.BarcodeFormat = SelectedCard.OriginalBarcodeFormat;
             }
         }
-        
+
         public string DetailsPageTitle { get; set; }
 
         public RelayCommand<string> NavigateToPageCommand
         {
-            get
-            {
-                return new RelayCommand<string>(url => navigationService.NavigateToPage(url));
-            }
+            get { return new RelayCommand<string>(url => navigationService.NavigateToPage(url)); }
         }
 
         public RelayCommand<Card> EditCardCommand
@@ -219,20 +220,20 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<Card>(card =>
-                                                  {
-                                                      DetailsPageTitle = "edit card details";
-                                                      tempCard = card;
-                                                      SelectedCard = card;
-                                                      if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
-                                                      SetProviderIndex();
-                                                      navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
-                                                  });
+                {
+                    DetailsPageTitle = "edit card details";
+                    tempCard = card;
+                    SelectedCard = card;
+                    if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
+                    SetProviderIndex();
+                    navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
+                });
             }
         }
 
         private void SetProviderIndex()
         {
-            var providers = ((CardProviders)Application.Current.Resources["CardProviders"]);
+            var providers = ((CardProviders) Application.Current.Resources["CardProviders"]);
             for (var i = 0; i < providers.Count; i++)
             {
                 if (SelectedCard.CardProvider.ProviderName == providers[i].ProviderName)
@@ -248,11 +249,11 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                SelectedCard = new Card{Id = Guid.NewGuid().ToString()};
-                                                DetailsPageTitle = "add new card";
-                                                navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
-                                            });
+                {
+                    SelectedCard = new Card {Id = Guid.NewGuid().ToString()};
+                    DetailsPageTitle = "add new card";
+                    navigationService.NavigateToPage("/Views/CardDetailsView.xaml");
+                });
             }
         }
 
@@ -261,13 +262,13 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<Card>(card =>
-                                                  {
-                                                      var result = MessageBox.Show("Are you sure you wish to delete this card? This action cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
-                                                      if (result == MessageBoxResult.OK)
-                                                      {
-                                                          Cards.Remove(card);
-                                                      }
-                                                  });
+                {
+                    var result = MessageBox.Show("Are you sure you wish to delete this card? This action cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        Cards.Remove(card);
+                    }
+                });
             }
         }
 
@@ -276,16 +277,16 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<Card>(card =>
-                                                  {
-                                                      if (string.IsNullOrEmpty(card.Id)) card.Id = Guid.NewGuid().ToString();
-                                                      var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
-                                                      if (existingTile != default(ShellTile))
-                                                      {
-                                                          App.ShowMessage("That card has already been pinned");
-                                                          return;
-                                                      }
-                                                      PinToStart(card);
-                                                  });
+                {
+                    if (string.IsNullOrEmpty(card.Id)) card.Id = Guid.NewGuid().ToString();
+                    var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
+                    if (existingTile != default(ShellTile))
+                    {
+                        App.ShowMessage("That card has already been pinned");
+                        return;
+                    }
+                    PinToStart(card);
+                });
             }
         }
 
@@ -294,19 +295,19 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                if (string.IsNullOrEmpty(SelectedCard.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
-                                                var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(SelectedCard.Id));
-                                                if (existingTile == default(ShellTile))
-                                                {
-                                                    PinToStart(SelectedCard);
-                                                }
-                                                else
-                                                {
-                                                    existingTile.Delete();
-                                                    CanPinToStart = true;
-                                                }
-                                            });
+                {
+                    if (string.IsNullOrEmpty(SelectedCard.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
+                    var existingTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(SelectedCard.Id));
+                    if (existingTile == default(ShellTile))
+                    {
+                        PinToStart(SelectedCard);
+                    }
+                    else
+                    {
+                        existingTile.Delete();
+                        CanPinToStart = true;
+                    }
+                });
             }
         }
 
@@ -316,10 +317,10 @@ namespace StoreCardBuddy.ViewModel
 
 #if WP8
             var shellData = new FlipTileData
-                                {
-                                    Title = "",
-                                    BackgroundImage = new Uri(card.CardProvider.TileUrl, UriKind.Relative)
-                                };
+            {
+                Title = "",
+                BackgroundImage = new Uri(card.CardProvider.TileUrl, UriKind.Relative)
+            };
             ShellTile.Create(new Uri(tileUrl, UriKind.Relative), shellData, false);
 #else
             var shellData = new StandardTileData
@@ -337,16 +338,16 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<Card>(card =>
-                                                  {
-                                                      SelectedCard = card;
-                                                      if (string.IsNullOrEmpty(SelectedCard.Id))
-                                                      {
-                                                          CanPinToStart = true;
-                                                          return;
-                                                      }
-                                                      var tile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
-                                                      CanPinToStart = tile == default(ShellTile);
-                                                  });
+                {
+                    SelectedCard = card;
+                    if (string.IsNullOrEmpty(SelectedCard.Id))
+                    {
+                        CanPinToStart = true;
+                        return;
+                    }
+                    var tile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(card.Id));
+                    CanPinToStart = tile == default(ShellTile);
+                });
             }
         }
 
@@ -355,23 +356,23 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<SelectionChangedEventArgs>(args =>
-                                                    {
-                                                        if (args.AddedItems != null)
-                                                        {
-                                                            foreach (var card in args.AddedItems.Cast<Card>())
-                                                            {
-                                                                SelectedCards.Add(card);
-                                                            }
-                                                        }
+                {
+                    if (args.AddedItems != null)
+                    {
+                        foreach (var card in args.AddedItems.Cast<Card>())
+                        {
+                            SelectedCards.Add(card);
+                        }
+                    }
 
-                                                        if (args.RemovedItems != null)
-                                                        {
-                                                            foreach (var card in args.RemovedItems.Cast<Card>())
-                                                            {
-                                                                SelectedCards.Remove(card);
-                                                            }
-                                                        }
-                                                    });
+                    if (args.RemovedItems != null)
+                    {
+                        foreach (var card in args.RemovedItems.Cast<Card>())
+                        {
+                            SelectedCards.Remove(card);
+                        }
+                    }
+                });
             }
         }
 
@@ -380,15 +381,15 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
-                                                if (result == MessageBoxResult.OK)
-                                                {
-                                                    var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
-                                                    
-                                                    Cards = new ObservableCollection<Card>(temp);
-                                                }
-                                            });
+                {
+                    var result = MessageBox.Show("Are you sure you wish to delete these items? This cannot be undone.", "Are you sure?", MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        var temp = Cards.TakeWhile(x => !SelectedCards.Contains(x)).ToList();
+
+                        Cards = new ObservableCollection<Card>(temp);
+                    }
+                });
             }
         }
 
@@ -397,25 +398,25 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                if (string.IsNullOrEmpty(SelectedCard.DisplayBarcode))
-                                                {
-                                                    MessageBox.Show("No barcode was entered, you really need one.", "Sorry, no barcode", MessageBoxButton.OK);
-                                                    return;
-                                                }
+                {
+                    if (string.IsNullOrEmpty(SelectedCard.DisplayBarcode))
+                    {
+                        MessageBox.Show("No barcode was entered, you really need one.", "Sorry, no barcode", MessageBoxButton.OK);
+                        return;
+                    }
 
-                                                CheckBarcode();
-                                                if (DetailsPageTitle != "edit card details")
-                                                {
-                                                    Flurry.Api.LogEvent("CardAdded", new List<Parameter>
-                                                                                         {
-                                                                                             new Parameter("CardProvider", SelectedCard.CardProvider.ProviderName)
-                                                                                         });
-                                                    if (string.IsNullOrEmpty(SelectedCard.Name)) SelectedCard.Name = SelectedCard.CardProvider.ProviderName;
-                                                    Cards.Add(SelectedCard);
-                                                }
-                                                navigationService.GoBack();
-                                            });
+                    CheckBarcode();
+                    if (DetailsPageTitle != "edit card details")
+                    {
+                        Flurry.Api.LogEvent("CardAdded", new List<Parameter>
+                        {
+                            new Parameter("CardProvider", SelectedCard.CardProvider.ProviderName)
+                        });
+                        if (string.IsNullOrEmpty(SelectedCard.Name)) SelectedCard.Name = SelectedCard.CardProvider.ProviderName;
+                        Cards.Add(SelectedCard);
+                    }
+                    navigationService.GoBack();
+                });
             }
         }
 
@@ -424,10 +425,10 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                navigationService.GoBack();
-                                                SelectedCard = null;
-                                            });
+                {
+                    navigationService.GoBack();
+                    SelectedCard = null;
+                });
             }
         }
 
@@ -435,7 +436,7 @@ namespace StoreCardBuddy.ViewModel
 #if WP8
         public bool CanAddToWallet { get; set; }
 
-        private  bool CheckWalletForCard(string id)
+        private bool CheckWalletForCard(string id)
         {
             var walletItem = Wallet.FindItem(id);
             CanAddToWallet = walletItem == default(WalletItem);
@@ -447,10 +448,10 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                CheckWalletForCard(SelectedCard.Id);
-                                                ItemTappedCommand.Execute(SelectedCard);
-                                            });
+                {
+                    CheckWalletForCard(SelectedCard.Id);
+                    ItemTappedCommand.Execute(SelectedCard);
+                });
             }
         }
 
@@ -459,19 +460,19 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand(() =>
-                                            {
-                                                if (CheckWalletForCard(SelectedCard.Id))
-                                                {
-                                                    AddToWallet(SelectedCard);
-                                                    CheckWalletForCard(SelectedCard.Id);
-                                                }
-                                                else
-                                                {
-                                                    var result = MessageBox.Show("Are you sure you want to remove this card from the wallet?", "Are you sure?", MessageBoxButton.OKCancel);
-                                                    if (result == MessageBoxResult.OK)
-                                                        Wallet.Remove(SelectedCard.Id);
-                                                }
-                                            });
+                {
+                    if (CheckWalletForCard(SelectedCard.Id))
+                    {
+                        AddToWallet(SelectedCard);
+                        CheckWalletForCard(SelectedCard.Id);
+                    }
+                    else
+                    {
+                        var result = MessageBox.Show("Are you sure you want to remove this card from the wallet?", "Are you sure?", MessageBoxButton.OKCancel);
+                        if (result == MessageBoxResult.OK)
+                            Wallet.Remove(SelectedCard.Id);
+                    }
+                });
             }
         }
 
@@ -480,51 +481,51 @@ namespace StoreCardBuddy.ViewModel
             get
             {
                 return new RelayCommand<Card>(card =>
-                                                  {
-                                                      if (!CheckWalletForCard(card.Id)) return;
-                                                      AddToWallet(card);
-                                                  });
+                {
+                    if (!CheckWalletForCard(card.Id)) return;
+                    AddToWallet(card);
+                });
             }
-        } 
+        }
 
         private void AddToWallet(Card card, bool showSuccessMessage = false)
         {
             if (card == null) return;
-            
+
             var walletCard = new WalletTransactionItem(card.Id)
-                                 {
-                                     DisplayName = card.Name,
-                                     IssuerName = card.CardProvider.ProviderName,
-                                     Logo99x99 = GetTileFromProvider(card.CardProvider, 99),
-                                     Logo159x159 = GetTileFromProvider(card.CardProvider, 159),
-                                     Logo336x336 = GetTileFromProvider(card.CardProvider, 336),
-                                     BarcodeImage = (BitmapSource)new Converters.BarcodeToImageConverter().Convert(card, typeof(BitmapSource), "false", null),
-                                     NavigationUri = new Uri(string.Format("/Views/DisplayBarcodeView.xaml?id={0}", card.Id), UriKind.Relative),
-                                     CustomerName = card.DisplayBarcode
-                                 };
+            {
+                DisplayName = card.Name,
+                IssuerName = card.CardProvider.ProviderName,
+                Logo99x99 = GetTileFromProvider(card.CardProvider, 99),
+                Logo159x159 = GetTileFromProvider(card.CardProvider, 159),
+                Logo336x336 = GetTileFromProvider(card.CardProvider, 336),
+                BarcodeImage = (BitmapSource) new Converters.BarcodeToImageConverter().Convert(card, typeof (BitmapSource), "false", null),
+                NavigationUri = new Uri(string.Format("/Views/DisplayBarcodeView.xaml?id={0}", card.Id), UriKind.Relative),
+                CustomerName = card.DisplayBarcode
+            };
 
             var walletTask = new AddWalletItemTask
-                                 {
-                                     Item = walletCard
-                                 };
+            {
+                Item = walletCard
+            };
             walletTask.Completed += (sender, result) =>
-                                        {
-                                            if (result.Error != null)
-                                            {
-                                                App.ShowMessage("There was an error adding your card");
-                                                return;
-                                            }
+            {
+                if (result.Error != null)
+                {
+                    App.ShowMessage("There was an error adding your card");
+                    return;
+                }
 
-                                            CheckWalletForCard(card.Id);
-                                            if(showSuccessMessage)
-                                                App.ShowMessage("Card was added to the wallet");
-                                        };
+                CheckWalletForCard(card.Id);
+                if (showSuccessMessage)
+                    App.ShowMessage("Card was added to the wallet");
+            };
             walletTask.Show();
         }
 
         private static BitmapSource GetTileFromProvider(CardProvider cardProvider, int imageSize)
         {
-            var bmp = new BitmapImage(new Uri(cardProvider.TileUrl, UriKind.Relative)){ CreateOptions = BitmapCreateOptions.None};
+            var bmp = new BitmapImage(new Uri(cardProvider.TileUrl, UriKind.Relative)) {CreateOptions = BitmapCreateOptions.None};
             var resize = new WriteableBitmap(bmp).Resize(imageSize, imageSize, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
             return resize;
         }

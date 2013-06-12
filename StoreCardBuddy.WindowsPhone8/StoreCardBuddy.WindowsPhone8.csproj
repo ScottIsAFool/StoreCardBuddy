@@ -166,6 +166,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\DisChem.png">
+      <Link>Images\DisChem.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\DisChemSquare.png">
+      <Link>Images\DisChemSquare.png</Link>
+    </Content>
+    <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\DisChemTile.png">
+      <Link>Images\DisChemTile.png</Link>
+    </Content>
     <Content Include="..\StoreCardBuddy.WindowsPhone7\Images\EveryoneActive.png">
       <Link>Images\EveryoneActive.png</Link>
     </Content>
