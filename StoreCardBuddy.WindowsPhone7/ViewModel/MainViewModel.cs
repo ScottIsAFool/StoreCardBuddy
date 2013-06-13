@@ -322,7 +322,7 @@ namespace StoreCardBuddy.ViewModel
                 BackgroundImage = new Uri(card.CardProvider.TileUrl, UriKind.Relative),
                 WideBackgroundImage = new Uri(card.CardProvider.WideTileUrl, UriKind.Relative)
             };
-            ShellTile.Create(new Uri(tileUrl, UriKind.Relative), shellData, false);
+            ShellTile.Create(new Uri(tileUrl, UriKind.Relative), shellData, true);
 #else
             var shellData = new StandardTileData
                                 {
