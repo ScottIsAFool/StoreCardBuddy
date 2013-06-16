@@ -55,7 +55,7 @@ namespace StoreCardBuddy.ViewModel
         };
 
         private Result currentCard;
-        private Card tempCard;
+        private Card _tempCard;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -222,7 +222,7 @@ namespace StoreCardBuddy.ViewModel
                 return new RelayCommand<Card>(card =>
                 {
                     DetailsPageTitle = "edit card details";
-                    tempCard = card;
+                    _tempCard = card.Clone();
                     SelectedCard = card;
                     if (string.IsNullOrEmpty(card.Id)) SelectedCard.Id = Guid.NewGuid().ToString();
                     SetProviderIndex();
@@ -428,7 +428,7 @@ namespace StoreCardBuddy.ViewModel
                 return new RelayCommand(() =>
                 {
                     navigationService.GoBack();
-                    SelectedCard = null;
+                    SelectedCard = DetailsPageTitle != "edit card details" ? null : _tempCard;
                 });
             }
         }
