@@ -261,7 +261,7 @@ namespace StoreCardBuddy.ViewModel
             
             try
             {
-                using (var stream = encodedString.ToStream())
+                using (var stream = await encodedString.ToStream())
                 {
 #if !WP8
                     _client.UploadAsync(MeDetails.TopLevelSkyDriveFolder, StoreCardBuddyFile, stream, OverwriteOption.Overwrite);
