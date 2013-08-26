@@ -350,5 +350,10 @@
     <MainPackageIdentityName>43233ScottLovegrove.MediaBrowser3</MainPackageIdentityName>
     <MainPackageIdentityName>43233ScottLovegrove.222904C874756</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/eb081e15-e613-4673-b0f7-be2a1624df49" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/eb081e15-e613-4673-b0f7-be2a1624df49">
+    <PackageInfo>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.0.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>
