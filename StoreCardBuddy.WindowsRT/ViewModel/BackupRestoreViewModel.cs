@@ -73,7 +73,7 @@ namespace StoreCardBuddy.ViewModel
                                                                               {
                                                                                   if (_navigationService.IsNetworkAvailable)
                                                                                   {
-                                                                                      _liveLoginResult = await _authClient.InitializeAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
+                                                                                      _liveLoginResult = await _authClient.InitializeAsync(_scopes.Select(scope => scope.ToStringScope()));
 
                                                                                       IsLoggedIn = _liveLoginResult.Status == LiveConnectSessionStatus.Connected;
 
@@ -115,7 +115,7 @@ namespace StoreCardBuddy.ViewModel
                                             {
                                                 if (!IsLoggedIn)
                                                 {
-                                                    _liveLoginResult = await _authClient.LoginAsync(LiveSDKClientHelper.GetScopesStringList(_scopes));
+                                                    _liveLoginResult = await _authClient.LoginAsync(_scopes.Select(scope => scope.ToStringScope()));
                                                 }
                                                 else
                                                 {

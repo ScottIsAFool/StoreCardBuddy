@@ -25,7 +25,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <FodyPath>..\packages\Fody.1.13.6.1</FodyPath>
+    <FodyPath>..\packages\Fody.1.14.0</FodyPath>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -279,6 +279,7 @@
     <Content Include="SplashScreenImage.Screen-720p.jpg" />
     <Content Include="SplashScreenImage.Screen-WVGA.jpg" />
     <Content Include="SplashScreenImage.Screen-WXGA.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
@@ -323,13 +324,16 @@
     <Content Include="Icons\appbar.delete.rest.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Phone.Toolkit, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.2.2.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.1.0\lib\wp8\Cimbalino.Phone.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Cimbalino.Phone.Toolkit.Background">
+      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0\lib\wp8\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.5\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
     <Reference Include="FlurryWP8SDK">
       <HintPath>..\3plib\Flurry\FlurryWP8SDK.dll</HintPath>
@@ -342,40 +346,46 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\GalaSoft.MvvmLight.WP8.dll</HintPath>
     </Reference>
-    <Reference Include="LiveSDKHelper, Version=0.1.0.4, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LiveSDKHelper, Version=0.1.0.7, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\LiveSDKHelper.0.1.0.4\lib\portable-win+net45+sl40+wp71\LiveSDKHelper.dll</HintPath>
+      <HintPath>..\packages\LiveSDKHelper.0.1.0.7\lib\portable-net45+sl40+wp71+win\LiveSDKHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Live">
-      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Live.Controls">
-      <HintPath>..\packages\LiveSDK.5.3\lib\WindowsPhone8\Microsoft.Live.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Live, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <HintPath>..\packages\LiveSDK.5.4\lib\WindowsPhone8\Microsoft.Live.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Live.Controls, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveSDK.5.4\lib\WindowsPhone8\Microsoft.Live.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.36.2.3\lib\SL40-WP\PropertyChanged.dll</HintPath>
+      <HintPath>..\packages\PropertyChanged.Fody.1.40.3\Lib\portable-net4+sl4+wp7+win8+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.14.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ScottIsAFool.WindowsPhone, Version=1.0.16.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.14.2\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\ScottIsAFool.WindowsPhone.1.0.16.7\lib\wp8\ScottIsAFool.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\WindowsPhone8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
-    <Reference Include="WriteableBitmapExWinPhone">
-      <HintPath>..\packages\WriteableBitmapEx.1.0.7.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
+    <Reference Include="WriteableBitmapExWinPhone, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="WriteableBitmapExWinPhoneXnaDependant">
+      <HintPath>..\packages\WriteableBitmapEx.1.0.8.0\lib\WindowsPhone8\WriteableBitmapExWinPhoneXnaDependant.dll</HintPath>
     </Reference>
     <Reference Include="YourLastAboutDialog, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -430,6 +440,6 @@
       <FilteredPackagingOutputs Remove="@(FilteredPackagingOutputs)" Condition="'%(FilteredPackagingOutputs.OutputGroup)' == 'CopyLocalFilesOutputGroup' AND '%(FilteredPackagingOutputs.Extension)' == '.xml'" />
     </ItemGroup>
   </Target>
-  <Import Project="Fody.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="Fody.targets" />
 </Project>
