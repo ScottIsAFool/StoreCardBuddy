@@ -56,6 +56,9 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+      8.0.4.8
+      - Fixed the SkyDrive restore issue
+      
       8.0.2.8
       - Added a new card (Dis-Chem)
       - Support for wide tiles.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -165,10 +166,11 @@ namespace StoreCardBuddy.ViewModel
         {
             ProgressIsVisible = true;
             ProgressText = "Restoring...";
+            var folder = SkyDriveHelper.GetFilesForFolder(MeDetails.TopLevelSkyDriveFolder, new List<FolderFilter> { FolderFilter.File });
 #if !WP8
-            _client.GetAsync(MeDetails.TopLevelSkyDriveFolder, "restorefiles");
+            _client.GetAsync(folder, "restorefiles");
 #else
-            var result = await _client.GetAsync(MeDetails.TopLevelSkyDriveFolder);
+            var result = await _client.GetAsync(folder);
             ProcessFiles(result.RawResult);
 #endif
         }
